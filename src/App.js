@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
 
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom';
 import {Routerhomepage,Title,TopicDetails} from './pages/RouterExmaple/Router'
+
 import Homepage from './pages/homepage/homepage'
 import ShopComponent from './pages/shop/shop.componnet'
+import HeaderComponnets from './components/header/header.components'
 
 const Hats =()=>{
   return(
@@ -15,6 +17,7 @@ const Hats =()=>{
 function App() {
   return (
     <div>
+      <HeaderComponnets/>
      <Switch>
            <Route exact path= "/" component ={Homepage}/>
            <Route exact path= "/shop" component ={ShopComponent}/>
