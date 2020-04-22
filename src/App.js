@@ -2,17 +2,15 @@ import React from 'react';
 import './App.css';
 
 import {Route, Switch} from 'react-router-dom';
-import {Routerhomepage,Title,TopicDetails} from './pages/RouterExmaple/Router'
+import {Routerhomepage,Title,TopicDetails} from './pages/RouterExmaple/Router';
 
-import Homepage from './pages/homepage/homepage'
-import ShopComponent from './pages/shop/shop.componnet'
-import HeaderComponnets from './components/header/header.components'
+import Homepage from './pages/homepage/homepage';
+import ShopComponent from './pages/shop/shop.componnet';
+import HeaderComponnets from './components/header/header.components';
+import SignInOutLandingComponent from './pages/sign-in-out-landing/sign-in-out.page'
+import SignINAndUpComponent from '../src/components/sign-in-up/sign-in-and-up/sign-in-up.component'
 
-const Hats =()=>{
-  return(
-    <h1>HATS</h1>
-  )
-}
+
 
 function App() {
   return (
@@ -21,7 +19,9 @@ function App() {
      <Switch>
            <Route exact path= "/" component ={Homepage}/>
            <Route exact path= "/shop" component ={ShopComponent}/>
+           <Route exact path= "/sign" component ={SignINAndUpComponent}/>
       </Switch>
+      
     </div>
   );
 }
