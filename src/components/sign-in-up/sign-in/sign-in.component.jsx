@@ -1,7 +1,12 @@
 import React from 'react';
 import './sign-in.comonent.scss'
+
 import FormInput from '../../CustumComponents/form-input/form-input.component'
 import CustumButton from '../../CustumComponents/CustumButon/custumButton.component'
+
+import {Link} from 'react-router-dom'
+
+import {signInWithGoogle} from '../../../firebase/firebase-auth-method';
 
 class SignInOutComponent extends React.Component{
     constructor(){
@@ -29,20 +34,47 @@ render(){
     console.log('SIgn in renders',this.state)
     return(
         <div className ="sign-in">
-            <h2>I already have an acoount</h2>
-            <span> Sign in with your email and password</span>
-
+            <h2 className = "title">WANNA LOGIN IN!</h2>
+            <div className ='subtitle'>
+                    <div> 
+                            LOGIN here
+                        </div> 
+                        <div className= 'or'> OR</div>
+                    <Link to ='/signUp'>
+                        <div className ='signup'>
+                                    SiGN UP
+                                </div>
+                        </Link>
+            </div>
             <form onSubmit={this.handleSubmit}>
-              <FormInput type="email" name="email" label ={"Email"}
-                    value={this.state.email} required
-                    handleChange ={this.handleOnchnage}/>
+
+                <FormInput 
+                    type="email" 
+                    name="email" 
+                    label={"Email"}
+                    value={this.state.email} 
+                    required
+                    handleChange={this.handleOnchnage} />
                         
-                <FormInput type="password" name="password" label={"Password"}
-                        value={this.state.password} required
+                <FormInput
+                        type="password"
+                        name="password"
+                        label={"Password"}
+                        value={this.state.password} 
+                        required
                         handleChange ={this.handleOnchnage}/>
 
-                <CustumButton type ="submit">Sign In</CustumButton>
-
+                <div className ="button-wrap">
+                        <CustumButton 
+                            type ="submit">
+                                Sign In
+                                </CustumButton>
+                        <CustumButton
+                            onClick ={signInWithGoogle}
+                            isGoogleSignIN >
+                                Google Sign In
+                                </CustumButton>
+                </div>
             </form>
         </div>
     );

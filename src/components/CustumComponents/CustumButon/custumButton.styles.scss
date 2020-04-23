@@ -1,5 +1,5 @@
 .custom-button {
-    min-width: 165px;
+    min-width: 10vw;
     width: auto;
     height: 50px;
     letter-spacing: 0.5px;
@@ -15,9 +15,19 @@
     cursor: pointer;
   
     &:hover {
-      background-color: white;
+      background-color: rgb(252, 235, 235);
       color: black;
       border: 1px solid black;
+    }
+    &.google-button{
+        background-color: #4285f4;
+        color: white;
+        &:hover {
+          background-color: #357ae8;
+          color: white;
+          border: 1px solid black;
+        }
+
     }
   }
   

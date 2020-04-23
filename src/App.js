@@ -4,26 +4,63 @@ import './App.css';
 import {Route, Switch} from 'react-router-dom';
 import {Routerhomepage,Title,TopicDetails} from './pages/RouterExmaple/Router';
 
+import {auth} from './firebase/firebase-setup'
+import createUserProfileDocument from './firebase/firestore-setup'
+
 import Homepage from './pages/homepage/homepage';
 import ShopComponent from './pages/shop/shop.componnet';
 import HeaderComponnets from './components/header/header.components';
 import SignInOutLandingComponent from './pages/sign-in-out-landing/sign-in-out.page'
-import SignINAndUpComponent from '../src/components/sign-in-up/sign-in-and-up/sign-in-up.component'
 
 
+class App extends React.Component {
+  constructor(){
+    super()
+    this.state ={
+        currentUser: null
+    }
+  }
 
-function App() {
-  return (
-    <div>
-      <HeaderComponnets/>
-     <Switch>
-           <Route exact path= "/" component ={Homepage}/>
-           <Route exact path= "/shop" component ={ShopComponent}/>
-           <Route exact path= "/sign" component ={SignINAndUpComponent}/>
-      </Switch>
-      
-    </div>
-  );
+  componentDidMount(){
+   this.authUsnsubscribeFunction= auth.onAuthStateChanged( async userAuth=>{
+     console.log("App auth user is", userAuth)
+        const userRef = await createUserProfileDocument(userAuth)
+        console.log("App userRef  is", userRef)
+        if(userRef){
+          userRef.onSnapshot(snaphot =>{
+            console.log('Snapshot is',snaphot) // snapshot object  that we are getting on subscribe 
+            console.log(snaphot.data())   // to get snapshot data 
+            this.setState({
+              currentUser: {
+                  id: snaphot.id,
+                  ...snaphot.data()
+                   }
+          }, ()=>{console.log(this.state)}
+          )
+          })
+        } else{
+          this.setState({currentUser: null})
+        }
+    })
+  }
+  componentWillUnmount(){
+     this.authUsnsubscribeFunction();
+  }
+  render(){
+    console.log("APP renders", this.state)
+    return (
+      <div>
+        <HeaderComponnets isUserSignIn ={this.state.currentUser}/>
+       <Switch>
+             <Route exact path= "/" component ={Homepage}/>
+             <Route exact path= "/shop" component ={ShopComponent}/>
+             <Route exact path= "/signin" component ={SignInOutLandingComponent}/>
+             <Route exact path= "/signup" component ={SignInOutLandingComponent}/>
+        </Switch>
+        
+      </div>
+    );
+  }
 }
 
 export default App;

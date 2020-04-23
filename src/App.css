@@ -7,3 +7,11 @@ a{
   text-decoration: none;
   color: black;
 }
+/* 
+    "*" sign below line represnts "for all element"
+    we have given "border-box" to box-sizing beacuse of padding and margin 
+    in email and pass we are facing allignment issue 
+*/
+*{
+  box-sizing: border-box;
+  }

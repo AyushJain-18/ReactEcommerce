@@ -2,8 +2,30 @@
     width: 25vw;
     display: flex;
     flex-direction: column;
-    
     .title{
-        margin: 10px 0px
+        align-self:flex-start;
+        margin-top: 3vw;
+    }
+    .subtitle{
+        display: flex;
+        margin: 0vw 2vw;
+        
+        .or{
+            padding: 0vw 1vw
+        }
+        .signup{
+            width: inherit;
+            align-self: center;
+            cursor: pointer;
+            color: #4285f4
+        }
+    }
+
+    .button-wrap{
+            width: inherit;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-content: flex-end;
     }
 }

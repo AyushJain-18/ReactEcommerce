@@ -2,8 +2,10 @@
     display: flex;
     justify-content: space-between;
     .Background-Image{
+        padding: 1px;
+        overflow: hidden;
         width: 60vw;
-        height: 100%
+        height: auto
     }
 }
 
