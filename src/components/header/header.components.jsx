@@ -10,14 +10,14 @@ import {signOut} from '../../firebase/firebase-auth-method'
 
 // using redux in react
 import {connect} from 'react-redux'
+import CartIcon from '../cart/cart-icon/cart-icon.component'
+import CartDropDown from '../cart/cart-dropdown/card-dropdown.component';
 
-const HeaderComponent =({currentUser})=>{
+const HeaderComponent =({currentUser,hidden})=>{
     console.log('header component', currentUser)
 return(
     <div className="header">
-        <Link className="logo-container" to="/">
-                <Logo className = 'logo'/>
-        </Link>
+        <Link className="logo-container" to="/"><Logo className = 'logo'/></Link>
         <div className= "options">
             <Link className= "option" to= "/shop">SHOP</Link>
             <Link className= "option" to= "">CONTACT</Link>
@@ -29,8 +29,10 @@ return(
                         SIGN IN 
                     </Link>
                 }
-            <Link className= "option" to= ""></Link>
+            <CartIcon/>
         </div>
+        {hidden? null: <CartDropDown/>}
+        
     </div>
 )
 }
@@ -39,7 +41,11 @@ return(
 // this function is being passed into connect.
 // state will be store. 
 //retutn 
-const mapStateToProps =(state)=>({ currentUser: state.user.currentUser})
+const mapStateToProps =(state)=>(
+            { currentUser: state.user.currentUser,
+                hidden:   state.cart.hidden
+            }
+    )
 
 export default connect(mapStateToProps)(HeaderComponent);
 
