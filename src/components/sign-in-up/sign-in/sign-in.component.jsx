@@ -6,7 +6,7 @@ import CustumButton from '../../CustumComponents/CustumButon/custumButton.compon
 
 import {Link} from 'react-router-dom'
 
-import {signInWithGoogle} from '../../../firebase/firebase-auth-method';
+import {signInWithGoogle ,signInwithEmailAndPassword} from '../../../firebase/firebase-auth-method';
 
 class SignInOutComponent extends React.Component{
     constructor(){
@@ -16,8 +16,9 @@ class SignInOutComponent extends React.Component{
             password: ''
         }
     }
-    handleSubmit=(event)=>{
+    handleSubmit= async (event)=>{
         event.preventDefault();
+        await signInwithEmailAndPassword({...this.state})
         this.setState({
             email : '',
             password: ''

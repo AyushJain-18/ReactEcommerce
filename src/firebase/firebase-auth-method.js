@@ -11,7 +11,8 @@ export const signInWithGoogle =()=> auth.signInWithPopup(provider);
 // make a token access request to Authoriaztion endpoint
 
 //2.Sign-in with email and password
-export const signInwithEmailAndPassword = async(email, password) =>{
+export const signInwithEmailAndPassword = async({email, password}) =>{
+        console.log('email, password', email, password)
   try{
       await auth.signInWithEmailAndPassword(email, password)
       } catch(error){

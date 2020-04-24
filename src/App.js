@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, Redirect} from 'react-router-dom';
 import {Routerhomepage,Title,TopicDetails} from './pages/RouterExmaple/Router';
 
 import {auth} from './firebase/firebase-setup'
@@ -12,16 +12,16 @@ import ShopComponent from './pages/shop/shop.componnet';
 import HeaderComponnets from './components/header/header.components';
 import SignInOutLandingComponent from './pages/sign-in-out-landing/sign-in-out.page'
 
+import {connect} from 'react-redux'
+
+
+import {setInitialState} from './reducer/user/user.action'
+
 
 class App extends React.Component {
-  constructor(){
-    super()
-    this.state ={
-        currentUser: null
-    }
-  }
 
   componentDidMount(){
+    const{actionForUserStateChange} = this.props;
    this.authUsnsubscribeFunction= auth.onAuthStateChanged( async userAuth=>{
      console.log("App auth user is", userAuth)
         const userRef = await createUserProfileDocument(userAuth)
@@ -30,16 +30,14 @@ class App extends React.Component {
           userRef.onSnapshot(snaphot =>{
             console.log('Snapshot is',snaphot) // snapshot object  that we are getting on subscribe 
             console.log(snaphot.data())   // to get snapshot data 
-            this.setState({
-              currentUser: {
-                  id: snaphot.id,
-                  ...snaphot.data()
-                   }
-          }, ()=>{console.log(this.state)}
-          )
-          })
+            actionForUserStateChange({
+              id: snaphot.id,
+              ...snaphot.data()
+               })  
+              })
+          
         } else{
-          this.setState({currentUser: null})
+          actionForUserStateChange(null)
         }
     })
   }
@@ -47,23 +45,47 @@ class App extends React.Component {
      this.authUsnsubscribeFunction();
   }
   render(){
-    console.log("APP renders", this.state)
+    console.log("APP renders", this.props)
     return (
       <div>
-        <HeaderComponnets isUserSignIn ={this.state.currentUser}/>
+        <HeaderComponnets/>
        <Switch>
              <Route exact path= "/" component ={Homepage}/>
              <Route exact path= "/shop" component ={ShopComponent}/>
-             <Route exact path= "/signin" component ={SignInOutLandingComponent}/>
-             <Route exact path= "/signup" component ={SignInOutLandingComponent}/>
+              <Route exact path= "/signin" 
+                 render= {
+                   ()=>this.props.currentUser? (
+                      <Redirect to='/'/>
+                      ):(
+                        <SignInOutLandingComponent/>
+                       )}
+                      />
+             <Route exact path= "/signup"
+                render= {
+                  ()=>this.props.currentUser? (
+                     <Redirect to='/'/>
+                     ):(
+                       <SignInOutLandingComponent/>
+                      )}
+                     />
+             />
         </Switch>
         
       </div>
     );
   }
 }
+const mapStateToprops =(state)=>({ currentUser: state.user.currentUser})
 
-export default App;
+// this dispatch/satet will be passed in from connect
+const mapDispatchToprops = (dispatch)=>{
+    return{
+      actionForUserStateChange : (user)=>{
+        dispatch(setInitialState(user))
+      }
+    }
+}
+export default  connect(mapStateToprops,mapDispatchToprops)(App);
 
 {/* <Switch>
             <Route exact path ="/" component={Routerhomepage}/>
