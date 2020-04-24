@@ -3,10 +3,18 @@ import React from 'react';
 import {withRouter} from 'react-router-dom'
 import './preview-items.styles.scss'
 import CustumButton from '../../CustumComponents/CustumButon/custumButton.component';
-const PreviewItems =({name,price, imageUrl ,history})=>{
+import {Link} from 'react-router-dom'
+const PreviewItems =({item ,history,title})=>{
+    const {name,price, imageUrl} = item
     return (
     <div className="collection-item">
-        <div className="item-image"
+        <Link to ={{
+            pathname:`shop/${title}/preview`,
+            item: {
+                ...item
+            }
+        }} 
+         className="item-image"
             style ={{
                 backgroundImage : `url(${imageUrl})`
             }}

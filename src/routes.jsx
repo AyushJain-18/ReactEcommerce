@@ -5,7 +5,8 @@ import {Route, Switch, Redirect} from 'react-router-dom';
 import Homepage from './pages/homepage/homepage';
 import ShopComponent from './pages/shop/shop.componnet';
 import HeaderComponnets from './components/header/header.components';
-import SignInOutLandingComponent from './pages/sign-in-out-landing/sign-in-out.page'
+import SignInOutLandingComponent from './pages/sign-in-out-landing/sign-in-out.page';
+import PreviewSingleItem from './components/shop-page/preview-single-item/preview-single-item.component'
 
 class RouteComponent extends React.Component{
     render(){
@@ -15,6 +16,7 @@ class RouteComponent extends React.Component{
                      <Switch>
                             <Route exact path= "/" component ={Homepage}/>
                             <Route exact path= "/shop" component ={ShopComponent}/>
+                            <Route exact path ='/shop/:id/preview' component ={PreviewSingleItem}/>
                             <Route exact path= "/signin" 
                                     render= {()=>this.props.currentUser? (
                                             <Redirect to='/'/>):(<SignInOutLandingComponent/>
