@@ -5,9 +5,11 @@ import {ReactComponent as ShoppingIcon} from '../../../assets/shopping-bag.svg'
 import {ToggleCartDisplayStatus } from '../../../reducer/cart/cart.action' //Action name
 import {connect} from 'react-redux'
 
-import {cartItemSelector} from '../../../reducer/cart/cart.reducer'
+import {cartItemSelector} from '../../../reducer/cart/cart.reducer';
+import {selectTotalCartItemQuantity} from '../../../reducer/cart/cart.selector'
 
 const CartIcon =(props) =>{
+    console.log('I Had  Rendeer RUNnnnnnnnnnnnn..........');
     return(
         <div className="cart-icon" onClick={props.toggleCartDisplayStatus}>
                 <ShoppingIcon className ="shopping-icon"/>
@@ -16,10 +18,9 @@ const CartIcon =(props) =>{
     )
 }
 const mapStateToProps =(state)=>{
-    console.log('I Had RUNnnnnnnnnnnnn..........');
     return{
-        itemCount: cartItemSelector(state)
-        
+        itemCount:  selectTotalCartItemQuantity(state)
+         // cartItemSelector(state) //-selector withouut memoization   
     }
 }
 
