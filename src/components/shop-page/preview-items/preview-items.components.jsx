@@ -1,10 +1,14 @@
 import React from 'react';
-
-import {withRouter} from 'react-router-dom'
 import './preview-items.styles.scss'
+
 import CustumButton from '../../CustumComponents/CustumButon/custumButton.component';
-import {Link} from 'react-router-dom'
-const PreviewItems =({item ,history,title})=>{
+import {withRouter, Link} from 'react-router-dom'
+
+import {connect} from 'react-redux';
+import {AddItemToCart} from '../../../reducer/cart/cart.action';
+
+const PreviewItems =({item ,history,title, AddItemToCartAction})=>{
+    console.log('AddItemToCartAction', AddItemToCartAction)
     const {name,price, imageUrl} = item
     return (
     <div className="collection-item">
@@ -21,12 +25,19 @@ const PreviewItems =({item ,history,title})=>{
         />
         <div className="collection-footer">
             <span className="name">{name}</span>
-            <span className="price">{price}</span>
+            <span className="price">{price}$</span>
         </div>
-        <CustumButton inverted> Add to Cart</CustumButton>
+        <CustumButton inverted onClick ={()=>AddItemToCartAction(item)}> Add to Cart</CustumButton>
         {/* <button onClick ={()=>history.push('/AddToCart')}>Add to cart</button> */}
     </div>
     ) 
 }
-
-export default  withRouter(PreviewItems)  ; 
+const mapDespatchToprops= (dispatch)=>{
+    return{
+        AddItemToCartAction: (item)=>{
+            dispatch(AddItemToCart(item))
+        } 
+    }
+    
+}
+export default  connect(null,mapDespatchToprops)(PreviewItems)  ; 

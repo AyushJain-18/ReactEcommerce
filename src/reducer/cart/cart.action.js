@@ -5,3 +5,10 @@ export const ToggleCartDisplayStatus = ()=>{
         type: CartAction.TOOGLE_CART_DISPLAY_STATE
     }
 }
+
+export const AddItemToCart = (item)=>{
+    return{
+        type: CartAction.ADD_TO_CART,
+        payload: item
+    }
+}
