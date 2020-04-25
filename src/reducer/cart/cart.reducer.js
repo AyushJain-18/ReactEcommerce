@@ -24,4 +24,9 @@ const cartReducer =(state =CART_INITIAL_STATE ,action)=>{
     }
 }
 
+// Selector without memoization
+// gives performance issue;
+export const cartItemSelector = (state)=>state.cart.cartItem.reduce((accumulator, eachItem)=>accumulator+eachItem.quantity,0)
+
+
 export default cartReducer;

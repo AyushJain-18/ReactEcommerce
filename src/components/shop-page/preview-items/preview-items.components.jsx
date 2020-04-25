@@ -8,7 +8,6 @@ import {connect} from 'react-redux';
 import {AddItemToCart} from '../../../reducer/cart/cart.action';
 
 const PreviewItems =({item ,history,title, AddItemToCartAction})=>{
-    console.log('AddItemToCartAction', AddItemToCartAction)
     const {name,price, imageUrl} = item
     return (
     <div className="collection-item">
