@@ -8,15 +8,14 @@ import {connect} from 'react-redux'
 import {setInitialState} from './reducer/user/user.action'
 
 import RouteComponent from './routes'
+import {selectCurrentUser} from './reducer/user/user.selector'
 
 class App extends React.Component {
 
   componentDidMount(){
     const{actionForUserStateChange} = this.props;
    this.authUsnsubscribeFunction= auth.onAuthStateChanged( async userAuth=>{
-     console.log("App auth user is", userAuth)
         const userRef = await createUserProfileDocument(userAuth)
-        console.log("App userRef  is", userRef)
         if(userRef){
           userRef.onSnapshot(snaphot =>{
             console.log('Snapshot is',snaphot) // snapshot object  that we are getting on subscribe 
@@ -44,7 +43,7 @@ class App extends React.Component {
     );
   }
 }
-const mapStateToprops =(state)=>({ currentUser: state.user.currentUser})
+const mapStateToprops = null;
 
 // this dispatch/satet will be passed in from connect
 const mapDispatchToprops = (dispatch)=>{

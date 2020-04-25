@@ -1,6 +1,10 @@
 import React from 'react';
 // react-router
 import {Route, Switch, Redirect} from 'react-router-dom';
+//redux
+import {connect} from 'react-redux';
+//user-selector
+import {selectCurrentUser} from './reducer/user/user.selector';
 // components
 import Homepage from './pages/homepage/homepage';
 import ShopComponent from './pages/shop/shop.componnet';
@@ -30,8 +34,8 @@ class RouteComponent extends React.Component{
             )
     }
 }
-
-export default RouteComponent;
+const mapStateToprops = (state)=>({ currentUser: selectCurrentUser(state)})
+export default connect(mapStateToprops)(RouteComponent);
 
 
 

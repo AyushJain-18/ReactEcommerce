@@ -13,6 +13,10 @@ import {connect} from 'react-redux'
 import CartIcon from '../cart/cart-icon/cart-icon.component'
 import CartDropDown from '../cart/cart-dropdown/card-dropdown.component';
 
+import {selectCardHiddenStatus} from '../../reducer/cart/cart.selector';
+import {selectCurrentUser} from '../../reducer/user/user.selector'
+import {createStructuredSelector} from 'reselect'
+
 const HeaderComponent =({currentUser,hidden})=>{
     console.log('header component', currentUser)
 return(
@@ -41,11 +45,15 @@ return(
 // this function is being passed into connect.
 // state will be store. 
 //retutn 
-const mapStateToProps =(state)=>(
-            { currentUser: state.user.currentUser,
-                hidden:   state.cart.hidden
-            }
-    )
+const mapStateToProps = createStructuredSelector({
+    hidden: selectCardHiddenStatus,
+    currentUser: selectCurrentUser
+})
+// const mapStateToProps =(state)=>(
+//             { currentUser: state.user.currentUser,
+//                 hidden:   state.cart.hidden
+//             }
+//     )
 
 export default connect(mapStateToProps)(HeaderComponent);
 
