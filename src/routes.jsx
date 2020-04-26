@@ -13,7 +13,7 @@ import ShopComponent from './pages/shop/shop.componnet';
 import HeaderComponnets from './components/header/header.components';
 import SignInOutLandingComponent from './pages/sign-in-out-landing/sign-in-out.page';
 import PreviewSingleItem from './components/shop-page/preview-single-item/preview-single-item.component'
-import Checkout from './pages/checkout/checkout.component'
+import Checkout from './pages/checkout/checkout.page'
 class RouteComponent extends React.Component{
     render(){
             return(
