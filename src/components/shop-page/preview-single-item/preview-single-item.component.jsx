@@ -8,6 +8,8 @@ import CustumButon from '../../CustumComponents/CustumButon/custumButton.compone
 import {connect} from 'react-redux';
 import {HideCart, AddItemToCart, ToggleCartDisplayStatus} from '../../../reducer/cart/cart.action'
 
+import {selectCartHiddenStatus} from'../../.././reducer/cart/cart.selector'
+
 class PreviewSingleItem extends React.Component{
     componentDidMount(){
         this.props.hideCartAction();
@@ -43,7 +45,9 @@ class PreviewSingleItem extends React.Component{
                         </div>
                         <div className ='single-button-container'>
                             <CustumButon onClick={()=> this.props.addItemToCartAction(item)} >Add to cart</CustumButon>
-                            <CustumButon onClick={()=> this.props.toggleCartDisplay()} >View cart</CustumButon>
+                            <CustumButon onClick={()=> this.props.toggleCartDisplay()} >
+                               {this.props.isCartHidden? 'View cart':'Hide Cart'} 
+                         </CustumButon>
                             <Link to="/">
                                 <CustumButon>More items</CustumButon>
                             </Link>
@@ -56,10 +60,12 @@ class PreviewSingleItem extends React.Component{
        )
     }
 }
-
+const mapStateToProps =(state)=>({
+    isCartHidden: selectCartHiddenStatus(state)
+})
 const mapDispatchToProps =(dispatch)=>({
     hideCartAction: ()=>dispatch(HideCart()),
     addItemToCartAction: (item)=>dispatch(AddItemToCart(item)),
     toggleCartDisplay: ()=>dispatch(ToggleCartDisplayStatus())
 })
-export default connect(null, mapDispatchToProps)(PreviewSingleItem);
+export default connect(mapStateToProps, mapDispatchToProps)(PreviewSingleItem);

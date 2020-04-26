@@ -13,7 +13,7 @@ import {connect} from 'react-redux'
 import CartIcon from '../cart/cart-icon/cart-icon.component'
 import CartDropDown from '../cart/cart-dropdown/card-dropdown.component';
 
-import {selectCardHiddenStatus} from '../../reducer/cart/cart.selector';
+import {selectCartHiddenStatus} from '../../reducer/cart/cart.selector';
 import {selectCurrentUser} from '../../reducer/user/user.selector'
 import {createStructuredSelector} from 'reselect'
 
@@ -46,7 +46,7 @@ return(
 // state will be store. 
 //retutn 
 const mapStateToProps = createStructuredSelector({
-    hidden: selectCardHiddenStatus,
+    hidden: selectCartHiddenStatus,
     currentUser: selectCurrentUser
 })
 // const mapStateToProps =(state)=>(
