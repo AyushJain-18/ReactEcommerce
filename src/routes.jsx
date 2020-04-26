@@ -11,7 +11,7 @@ import ShopComponent from './pages/shop/shop.componnet';
 import HeaderComponnets from './components/header/header.components';
 import SignInOutLandingComponent from './pages/sign-in-out-landing/sign-in-out.page';
 import PreviewSingleItem from './components/shop-page/preview-single-item/preview-single-item.component'
-
+import Checkout from './pages/checkout/checkout.component'
 class RouteComponent extends React.Component{
     render(){
             return(
@@ -21,6 +21,7 @@ class RouteComponent extends React.Component{
                             <Route exact path= "/" component ={Homepage}/>
                             <Route exact path= "/shop" component ={ShopComponent}/>
                             <Route exact path ='/shop/:id/preview' component ={PreviewSingleItem}/>
+                            <Route exact path= "/chekout" component ={Checkout}/>
                             <Route exact path= "/signin" 
                                     render= {()=>this.props.currentUser? (
                                             <Redirect to='/'/>):(<SignInOutLandingComponent/>

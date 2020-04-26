@@ -10,6 +10,11 @@
   top: 6vw;
   right: 3vw;
   z-index: 5;
+  .empty-cart{
+    font-size: 20px;
+    margin: 5vw auto;
+    word-spacing: 2px;
+  }
 
   .cart-items {
     height: 240px;
