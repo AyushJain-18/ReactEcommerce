@@ -9,18 +9,26 @@
   background-color: white;
   top: 6vw;
   right: 3vw;
+  
   z-index: 5;
   .empty-cart{
     font-size: 20px;
     margin: 5vw auto;
     word-spacing: 2px;
   }
-
+  .html-dingbats{
+    position: absolute;
+    align-self: flex-end;
+    top: 2px;
+    right: 3px;
+    cursor: pointer;
+  }
   .cart-items {
     height: 240px;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    
   }
 
   button {
