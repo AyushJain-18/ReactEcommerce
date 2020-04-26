@@ -1,0 +1,4 @@
+ const  ITEM_ACTIONS = {
+    UPDATE_PREVIEW_ITEM:'UPDATE_PREVIEW_ITEM'
+ }
+ export default ITEM_ACTIONS;

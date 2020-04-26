@@ -50,6 +50,15 @@
                         text-transform: uppercase;
                     }
             }
+            .nxt-btn{
+                align-self: center;
+                font-size:2vw;
+                cursor: pointer;
+                transition: ease-out 0.5s;
+                &:hover{
+                    transform: scale(1.5)
+                }
+            }
     }
 }
 

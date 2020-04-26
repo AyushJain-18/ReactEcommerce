@@ -246,4 +246,17 @@ const SHOP_DATA = [
   }
 ];
 
+
+
+
+export const getRandomItem =(itemid)=>{
+  let ItemsArrays =[]
+  SHOP_DATA.map(eachCategory=>{
+    eachCategory.items.forEach(item =>ItemsArrays.push(item))
+  })
+  let randomitem = ItemsArrays.filter(item=> item.id===itemid);
+  return randomitem[0]
+}
 export default SHOP_DATA;
+
+
