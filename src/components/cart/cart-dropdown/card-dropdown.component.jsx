@@ -8,6 +8,7 @@ import {connect} from 'react-redux';
 import {selectCartItem} from '../../../reducer/cart/cart.selector';
 import {selectCurrentUser} from '../../../reducer/user/user.selector';
 import {withRouter} from 'react-router-dom'
+import {HideCart} from '../../../reducer/cart/cart.action'
 
 
 
@@ -20,11 +21,15 @@ const CartDropDown =(props)=>{
                 <div className="empty-cart">Cart is Empty</div>
                 }
             </div>
-                    {props.currentUser?
+                    {(props.cartItems.length)?
+                    (props.currentUser ?
                             <CustumButton onClick={()=>props.history.push('/chekout')}>
-                                Go to Checkout</CustumButton>:
+                                 Checkout</CustumButton>:
                             <CustumButton onClick={()=>props.history.push('/signin')}>
-                                Sign-In to Checkout</CustumButton>    
+                                Sign-In to Checkout</CustumButton>) : 
+                            <CustumButton onClick ={props.hideCartAction}>
+                                Hide Cart
+                            </CustumButton>  
                 }
                     
             </div>
@@ -36,4 +41,7 @@ const mapStateToProps =(state)=>{
         currentUser: selectCurrentUser(state)
     }
 }
-export default withRouter(connect(mapStateToProps)(CartDropDown));
+const mapDispatchToProps =(dispatch)=>({
+    hideCartAction: ()=>dispatch(HideCart())
+})
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(CartDropDown));

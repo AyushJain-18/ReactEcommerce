@@ -25,7 +25,16 @@ class SignUpCompoenent extends React.Component{
         })
     }
     handelSubmit =async(event) =>{
+        const{email, displayName,password,confirmPassword} = this.state
         event.preventDefault()
+        if(!email|| !displayName||!password||!confirmPassword){
+            alert('Please fill all details');
+            return
+        }
+        if(this.state.password !== this.state.confirmPassword){
+            alert('CONFIRM PASSWORD did not match');
+            return;
+        }
        const userRefference = await signUpWithEmailAndPassword({...this.state});
        console.log("Result", userRefference)
        if(userRefference){

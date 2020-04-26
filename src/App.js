@@ -5,10 +5,10 @@ import {auth} from './firebase/firebase-setup'
 import createUserProfileDocument from './firebase/firestore-setup'
 
 import {connect} from 'react-redux'
-import {setInitialState} from './reducer/user/user.action'
+import {setInitialState} from './reducer/user/user.action';
+
 
 import RouteComponent from './routes'
-import {selectCurrentUser} from './reducer/user/user.selector'
 
 class App extends React.Component {
 
@@ -48,9 +48,8 @@ const mapStateToprops = null;
 // this dispatch/satet will be passed in from connect
 const mapDispatchToprops = (dispatch)=>{
     return{
-      actionForUserStateChange : (user)=>{
-        dispatch(setInitialState(user))
-      }
+      actionForUserStateChange : (user)=>dispatch(setInitialState(user))
+      
     }
 }
 export default  connect(mapStateToprops,mapDispatchToprops)(App);

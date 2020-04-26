@@ -75,7 +75,10 @@ render(){
                                 Sign In
                                 </CustumButton>
                         <CustumButton
-                            onClick ={signInWithGoogle}
+                            onClick ={(event)=>{
+                                event.preventDefault();
+                                signInWithGoogle();
+                            }}
                             isGoogleSignIN >
                                 Google Sign In
                                 </CustumButton>
