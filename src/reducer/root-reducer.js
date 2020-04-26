@@ -11,10 +11,32 @@ import {combineReducers} from 'redux';
 import userReducer from './user/user.reducer'
 import cartReducer from './cart/cart.reducer'
 import ItemReducer from './item/item.reducer';
-export default combineReducers(
-    {
-        user: userReducer,
-        cart: cartReducer,
-        item: ItemReducer
-    }
-    )
+
+// reducer for our persistance
+import {persistReducer} from 'redux-persist';
+
+//storage we are using
+import storage from 'redux-persist/lib/storage'
+
+//creating cofig object for redux-persist
+
+const redux_persist_config ={
+    key: 'root',
+    storage,
+    whitelist: ['cart']
+
+}
+
+const rootReducer = combineReducers({
+    user: userReducer,
+    cart: cartReducer,
+    item: ItemReducer
+})
+export default  persistReducer(redux_persist_config, rootReducer);
+// combineReducers(
+//     {
+//         user: userReducer,
+//         cart: cartReducer,
+//         item: ItemReducer
+//     }
+//     )

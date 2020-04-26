@@ -8,13 +8,19 @@ import * as serviceWorker from './serviceWorker';
 
 import {BrowserRouter} from 'react-router-dom' //  import for routing module.
 import {Provider} from 'react-redux'
-import store from './reducer/store'
+import store,{persistor} from './reducer/store'
+
+
+//persist component
+import {PersistGate} from 'redux-persist/integration/react'
 
 ReactDOM.render(
   <Provider store ={store}>
     <BrowserRouter>
-        <App />
-  </BrowserRouter>
+      <PersistGate persistor ={persistor}>
+          <App />
+      </PersistGate>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );
