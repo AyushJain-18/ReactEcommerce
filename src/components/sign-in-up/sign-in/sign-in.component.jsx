@@ -8,6 +8,8 @@ import {Link} from 'react-router-dom'
 
 import {signInWithGoogle ,signInwithEmailAndPassword} from '../../../firebase/firebase-auth-method';
 
+import {connect} from 'react-redux';
+import {HideCart} from '../../../reducer/cart/cart.action'
 class SignInOutComponent extends React.Component{
     constructor(){
         super()
@@ -31,8 +33,10 @@ class SignInOutComponent extends React.Component{
                 return { [name]: value}
             })
     }
+    componentDidMount(){
+        this.props.hideCartAction();
+    }
 render(){
-    console.log('SIgn in renders',this.state)
     return(
         <div className ="sign-in">
             <h2 className = "title">WANNA LOGIN IN!</h2>
@@ -81,5 +85,8 @@ render(){
     );
 }
 }
-
-export default SignInOutComponent ;
+const mapDispatchToProps =(dispatch)=>({
+    hideCartAction: ()=>dispatch(HideCart())
+})
+  
+export default connect(null,mapDispatchToProps)(SignInOutComponent) ;
