@@ -1,20 +1,15 @@
 import React from 'react';
 
-import SHOP_DATA from './shop.data.js'
 import './shop.styles.scss';
 import PreviewCollectionComponent from '../../components/shop-page/preview-collection/preview-collection.compoenent';
+import { createStructuredSelector } from 'reselect';
+import { selectCollections } from '../../reducer/shop/shop.selector';
+import { connect } from 'react-redux';
 
-class ShopComponent extends React.Component{
-    constructor(props){
-        super(props)
-        this.state ={
-            collections: SHOP_DATA // array of items/ varios collection we have in our website
-        }
-    }
-    render(){
+const ShopComponent=({collections})=> {
         return(
             <div className ='shop-page'>
-                {this.state.collections.
+                {collections.
                 map(({id, ...OtherValueOfEachCollectionItem})=>(
                          <PreviewCollectionComponent key={id} {...OtherValueOfEachCollectionItem}/>
                 ))}
@@ -22,6 +17,5 @@ class ShopComponent extends React.Component{
             </div>
         )
     }
-}
-
-export default ShopComponent;
+const mapStateToProps = createStructuredSelector({collections: selectCollections})
+export default connect(mapStateToProps)(ShopComponent);

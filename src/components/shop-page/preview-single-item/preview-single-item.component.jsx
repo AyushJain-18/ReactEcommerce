@@ -9,26 +9,32 @@ import {connect} from 'react-redux';
 import {HideCart, AddItemToCart, ToggleCartDisplayStatus} from '../../../reducer/cart/cart.action'
 import {updatePreviewItem} from '../../../reducer/item/item.action'
 
-import {selectCartHiddenStatus} from'../../.././reducer/cart/cart.selector'
-import  {getRandomItem}from '../../../pages/shop/shop.data'
+import {selectCartHiddenStatus} from'../../.././reducer/cart/cart.selector';
+import {selectCollections} from '../../../reducer/shop/shop.selector'
+
 class PreviewSingleItem extends React.Component{
     componentDidMount(){
         this.props.hideCartAction();
     }
     componentDidMount(){
-        console.log('componentDidMount')
         const item = this.props.location.item
         this.props.updateItemAction(item);
     }
-   async selectRandomItem(){
+    selectRandomItem(){
         let randomNumber = Math.floor(Math.random() * 35) + 1 ;
-        console.log('randomNumber1, randomNumber2', randomNumber)
-        let item = getRandomItem(randomNumber)
-        console.log("payload",item)
-        await this.props.updateItemAction(item)
+        let item = this.getRandomItem(randomNumber)
+        this.props.updateItemAction(item)
     }
+
+     getRandomItem =(itemid)=>{
+        let ItemsArrays =[]
+        this.props.collections.map(eachCategory=>{
+          eachCategory.items.forEach(item =>ItemsArrays.push(item))
+        })
+        let randomitem = ItemsArrays.filter(item=> item.id===itemid);
+        return randomitem[0]
+      }
     render(){
-        console.log('render')
         if(!this.props.location.item){
             return <Redirect to= '/'/>
         }else{
@@ -80,7 +86,8 @@ class PreviewSingleItem extends React.Component{
 }
 const mapStateToProps =(state)=>({
     isCartHidden: selectCartHiddenStatus(state),
-    item: state.item
+    item: state.item,
+    collections: selectCollections(state)
 })
 const mapDispatchToProps =(dispatch)=>({
     hideCartAction: ()=>dispatch(HideCart()),

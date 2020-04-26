@@ -18,6 +18,7 @@ import {persistReducer} from 'redux-persist';
 //storage we are using
 import storage from 'redux-persist/lib/storage'
 import DirectoryReducer from './directory/directory.reducer';
+import ShopReducer from './shop/shop.reducer';
 
 //creating cofig object for redux-persist
 
@@ -32,7 +33,8 @@ const rootReducer = combineReducers({
     user: userReducer,
     cart: cartReducer,
     item: ItemReducer,
-    directory: DirectoryReducer
+    directory: DirectoryReducer,
+    shop: ShopReducer
 })
 export default  persistReducer(redux_persist_config, rootReducer);
 // combineReducers(
