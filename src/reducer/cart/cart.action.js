@@ -31,3 +31,9 @@ export const deacreaseCartQuantity =(cartItem)=>{
         }
     )
 }
+
+export const EmptyCart =()=>{
+    return{
+        type: CartAction.EMPTY_CART
+    }
+}

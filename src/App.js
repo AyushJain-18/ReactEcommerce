@@ -9,12 +9,16 @@ import {setInitialState} from './reducer/user/user.action';
 
 
 import RouteComponent from './routes'
+import { EmptyCart } from './reducer/cart/cart.action';
 
 class App extends React.Component {
 
   componentDidMount(){
     const{actionForUserStateChange} = this.props;
    this.authUsnsubscribeFunction= auth.onAuthStateChanged( async userAuth=>{
+     if(userAuth===null){
+        this.props.emptyCartAction();
+     }
         const userRef = await createUserProfileDocument(userAuth)
         if(userRef){
           userRef.onSnapshot(snaphot =>{
@@ -48,7 +52,8 @@ const mapStateToprops = null;
 // this dispatch/satet will be passed in from connect
 const mapDispatchToprops = (dispatch)=>{
     return{
-      actionForUserStateChange : (user)=>dispatch(setInitialState(user))
+      actionForUserStateChange : (user)=>dispatch(setInitialState(user)),
+      emptyCartAction: ()=>dispatch(EmptyCart())
       
     }
 }

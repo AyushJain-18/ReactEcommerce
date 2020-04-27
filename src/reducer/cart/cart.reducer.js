@@ -34,6 +34,8 @@ const cartReducer =(state =CART_INITIAL_STATE ,action)=>{
                     ...state,
                     cartItem: deacreaseItemQuantityIncart(state.cartItem,action.payload)
                 }
+                case CartAction.EMPTY_CART:
+                    return CART_INITIAL_STATE
             default:
                return state
     }
