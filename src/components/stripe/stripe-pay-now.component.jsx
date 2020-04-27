@@ -26,20 +26,21 @@ class  PayNowComponent extends React.Component{
                 <p> Card: 4242 4242 4242 4242  CVV - 123 Expiry Date -01/21
                 </p>        
             </div>  
-            
-            <StripeCheckout
-            label='Pay Now'
-            name ='CRWN Clothing Ltd.'
-            billingAddress
-            shippingAddress
-            image = '/favicon.ico'
-            description= {`Your total price is ${this.props.price}`}
-            amount ={this.priceInScent}
-            token ={this.onToken}
-            stripeKey= {this.publishableKey}
-            opened={this.onOpened}
-            closed={this.onClosed}
-            />
+            <div className ="stripeButton">
+                <StripeCheckout
+                label='Pay Now'
+                name ='CRWN Clothing Ltd.'
+                billingAddress
+                shippingAddress
+                image = '/favicon.ico'
+                description= {`Your total price is ${this.props.price}`}
+                amount ={this.priceInScent}
+                token ={this.onToken}
+                stripeKey= {this.publishableKey}
+                opened={this.onOpened}
+                closed={this.onClosed}
+                />
+            </div>
         </div>
     )
  }
