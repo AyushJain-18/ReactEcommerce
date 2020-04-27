@@ -5,7 +5,11 @@ import logger from 'redux-logger' //  a miidleware that log store sate change an
 import {persistStore} from 'redux-persist'
 //root-reducer
 import  combineReducers from './root-reducer'
-const middleware = [logger];
+const middleware = [];
+console.log('process.env',process.env);
+if(process.env.NODE_ENV ==="development"){
+    middleware.push(logger);
+}
 
 const store = createStore(combineReducers , applyMiddleware(...middleware));
 // create a persist-store 
