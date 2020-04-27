@@ -1,7 +1,7 @@
 import SHOP_DATA from './shop.data';
 
 const INITIAL_SHOP_STATE ={
-    collections: SHOP_DATA
+    collections: Object.values(SHOP_DATA) 
 };
 
  const ShopReducer = (state =INITIAL_SHOP_STATE,action)=>{
