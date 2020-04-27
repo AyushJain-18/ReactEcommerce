@@ -7,6 +7,7 @@ import {selectTotalPriceOfItemsInCart, selectCartItem} from '../../reducer/cart/
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect'
 
+import PayNowComponent from '../../components/stripe/stripe-pay-now.component'
 class Checkout extends React.Component{
     componentWillMount(){
             this.props.hideCartAction();
@@ -38,6 +39,7 @@ class Checkout extends React.Component{
                 <div className='total'>
                     <span>Total: ${this.props.totalCartValue}</span>
                 </div>
+                <PayNowComponent price ={this.props.totalCartValue}/> 
             </div>
         )
     }
