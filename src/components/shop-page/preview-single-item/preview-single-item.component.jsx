@@ -69,7 +69,7 @@ class PreviewSingleItem extends React.Component{
                             <CustumButon onClick={()=> this.props.toggleCartDisplay()} >
                                {this.props.isCartHidden? 'View cart':'Hide Cart'} 
                          </CustumButon>
-                            <Link to="/">
+                            <Link to="/shop">
                                 <CustumButon>More items</CustumButon>
                             </Link>
                         </div>

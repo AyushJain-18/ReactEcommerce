@@ -12,7 +12,7 @@ const PreviewItems =({item ,history,title, AddItemToCartAction})=>{
     return (
     <div className="collection-item">
         <Link to ={{
-            pathname:`shop/${title}/preview`,
+            pathname:`/preview/${title}`,
             item: {
                 ...item
             }

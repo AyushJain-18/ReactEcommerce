@@ -5,7 +5,10 @@ export const selectShop =(state)=> state.shop;
 export const selectCollections = createSelector(
     [selectShop],shop=>Object.values(shop.collections)
 )
-
-export const selectItem = createSelector(
-    [selectCollections]
-)
+// when have shown here currying
+export const selectItem = (categoryName)=>{
+   return createSelector(
+        [selectShop],shop =>shop.collections[`${categoryName}`]
+        )
+}
+   

@@ -21,9 +21,9 @@ class RouteComponent extends React.Component{
                     <HeaderComponnets/>
                      <Switch>
                             <Route exact path= "/" component ={Homepage}/>
-                            <Route exact path= "/shop" component ={ShopComponent}/>
-                            <Route exact path ='/shop/:id/preview' component ={PreviewSingleItem}/>
+                            <Route exact path ='/preview/:id/' component ={PreviewSingleItem}/>
                             <Route exact path= "/chekout" component ={Checkout}/>
+                            <Route path= "/shop" component ={ShopComponent}/>
                             <Route exact path= "/signin" 
                                     render= {()=>this.props.currentUser? (
                                             <Redirect to='/'/>):(<SignInOutLandingComponent/>
