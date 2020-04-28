@@ -16,7 +16,7 @@ class SignInOutLandingComponent extends React.Component{
                      this.props.history.location.pathname === '/signin'?
                      <SignIn/>: <SignUpCompoenent/>
                  }
-                 <img  className ="Background-Image" src={require('../../assets/homepage.jpg')} />              
+                 <img  className ="Background-Image" src={'/homepage.jpg'} />              
             </div>
         )
     }
