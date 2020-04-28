@@ -26,7 +26,7 @@ const PreviewItems =({item ,history,title, AddItemToCartAction})=>{
             <span className="name">{name}</span>
             <span className="price">{price}$</span>
         </div>
-        <CustumButton inverted onClick ={()=>AddItemToCartAction(item)}> Add to Cart</CustumButton>
+        <CustumButton className ='custom-button' inverted onClick ={()=>AddItemToCartAction(item)}> Add to Cart</CustumButton>
         {/* <button onClick ={()=>history.push('/AddToCart')}>Add to cart</button> */}
     </div>
     ) 

@@ -17,27 +17,31 @@ import {selectCartHiddenStatus} from '../../reducer/cart/cart.selector';
 import {selectCurrentUser} from '../../reducer/user/user.selector'
 import {createStructuredSelector} from 'reselect'
 
+import {HeaderContainer,LogoContainer,OptionDiv,OptionLink,OptionsContainer} from '../header/header.styles'
+
 const HeaderComponent =({currentUser,hidden})=>{
     console.log('header component', currentUser)
 return(
-    <div className="header">
-        <Link className="logo-container" to="/"><Logo className = 'logo'/></Link>
-        <div className= "options">
-            <Link className= "option" to= "/shop">SHOP</Link>
-            <Link className= "option" to= "">CONTACT</Link>
-            {currentUser? 
-                    <div className= "option" onClick ={signOut}>
-                        SIGN OUT
-                    </div>: 
-                    <Link className= "option" to= "/signin">
-                        SIGN IN 
-                    </Link>
+        <HeaderContainer>
+                <LogoContainer  to="/"><Logo className = 'logo'/></LogoContainer>
+            <OptionsContainer>
+                    <OptionLink  to= "/shop">SHOP</OptionLink>
+                <OptionLink>
+                    <Link  to= "">CONTACT</Link>
+                </OptionLink>
+                    {currentUser? 
+                    <OptionDiv>
+                    <div onClick ={signOut}> SIGN OUT</div>
+                    </OptionDiv>: 
+                     <OptionLink>
+                    <Link  to= "/signin"> SIGN IN </Link>
+                    </OptionLink> 
                 }
             <CartIcon/>
-        </div>
+            </OptionsContainer>
         {hidden? null: <CartDropDown/>}
         
-    </div>
+  </HeaderContainer>
 )
 }
 
