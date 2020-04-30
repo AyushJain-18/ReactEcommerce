@@ -1,0 +1,5 @@
+const SHOP_ACTION ={
+    ADD_INTIAL_DATA : 'ADD_INTIAL_DATA'
+}
+
+export default SHOP_ACTION;

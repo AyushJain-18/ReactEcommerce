@@ -23,5 +23,40 @@ const createUserProfileDocument =async (authUser ,otherprops)=>{
       }
       return userRefference;
   }
+ 
+ 
+  export const getDataFromCollection = async (collectionkey, fn) =>{
+    let shopCollection =await firestore.collection(`/${collectionkey}`);
+        shopCollection.onSnapshot( async (snaphsot)=>{
+         let itemArrayJSObject =   snaphsot.docs.map(shopItem =>{
+              let {items,title} =  shopItem.data();
+                return{
+                  items,
+                  title,
+                  id: shopItem.id,
+                  router: encodeURI(title.toLowerCase())
+                }
+            })
+            let itemJSONobj= itemArrayJSObject.reduce((acc , eachitem)=>{
+              return acc ={
+                ...acc,
+                [`${eachitem.title}`]:eachitem
+              }
+            },{})
+            fn(itemJSONobj);
+          })
+       
+ }
+
+  export const enterShopData = async (collectionKey, arrayToAdd) => {
+    // code for update shop data 
+    // let shopCollection = await firestore.collection(`${collectionKey}`);
+    //   let batch = firestore.batch();
+    //   arrayToAdd.forEach(collection=> {
+    //        let docRef =  shopCollection.doc();
+    //        batch.set(docRef,collection )
+    //   });
+    //   return await batch.commit()
+  }
 
   export default createUserProfileDocument ;

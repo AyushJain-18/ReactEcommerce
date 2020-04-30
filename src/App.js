@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 
 import {auth} from './firebase/firebase-setup'
-import createUserProfileDocument from './firebase/firestore-setup'
+import createUserProfileDocument ,{enterShopData} from './firebase/firestore-setup'
 
 import {connect} from 'react-redux'
 import {setInitialState} from './reducer/user/user.action';
@@ -14,8 +14,10 @@ import { EmptyCart } from './reducer/cart/cart.action';
 class App extends React.Component {
 
   componentDidMount(){
+    // enterShopData(Object.values(SHOP_DATA).map(
+    //   ({title,items})=>({title, items})))
     const{actionForUserStateChange} = this.props;
-   this.authUsnsubscribeFunction= auth.onAuthStateChanged( async userAuth=>{
+    this.authUsnsubscribeFunction= auth.onAuthStateChanged( async userAuth=>{
      if(userAuth===null){
         this.props.emptyCartAction();
      }
