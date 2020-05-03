@@ -21,16 +21,16 @@ class ShopComponent extends React.Component{
       getDataFromCollection('shop', (collections)=>{
         console.log('shop data is ',collections);
         this.props.addItemToShopReducer(collections);
-        this.setState({loading: false})
+        this.setState({loading: false},()=>console.log('DATA is',this.state))
       });
     }
     render(){
         const match = this.props.match;
-        const loading = this.state.loading
         return(
             <div className ='shop-page'>
                 <Route exact path ={`${match.path}`} component={CollectionOverview}/>
-                <Route path={`${match.path}/:categoryId`} render={(props)=> <CollectionOverviewwithSpinner isLoading={loading} {...props}/>}/>
+                <Route path={`${match.path}/:categoryId`} 
+                    render={(props)=> <CollectionComponentwithSpinner isLoading={this.state.loading}  {...props}/>}/>
             </div>
         )
     }
