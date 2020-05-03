@@ -27,7 +27,7 @@ const createUserProfileDocument =async (authUser ,otherprops)=>{
  
   export const getDataFromCollection = async (collectionkey, fn) =>{
     let shopCollection =await firestore.collection(`/${collectionkey}`);
-        shopCollection.onSnapshot( async (snaphsot)=>{
+        shopCollection.get().then( async (snaphsot)=>{
          let itemArrayJSObject =   snaphsot.docs.map(shopItem =>{
               let {items,title} =  shopItem.data();
                 return{
