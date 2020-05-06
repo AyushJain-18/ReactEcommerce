@@ -11,4 +11,13 @@ export const selectItem = (categoryName)=>{
         [selectShop],shop =>shop.collections[`${categoryName}`]
         )
 }
+
+export const selectFectingState = createSelector(
+    [selectShop],
+        shop=>shop.isFetching
+)
+
+export const selectIsCollection = createSelector(
+    [selectShop], shop=> !!shop.collections
+)
    

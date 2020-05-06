@@ -1,12 +1,19 @@
 import {createStore ,applyMiddleware} from 'redux';
-import logger from 'redux-logger' //  a miidleware that log store sate change and all action performed
+ 
+//  a miidleware that log store sate change and all action performed
+import logger from 'redux-logger'
 
 //persistance store
 import {persistStore} from 'redux-persist'
+
 //root-reducer
 import  combineReducers from './root-reducer'
 
-const middleware = [];
+//redux-thunk a middelware that allow as to fire finctions
+import thunk from 'redux-thunk';
+
+
+const middleware = [thunk];
 console.log('process.env',process.env);
 if(process.env.NODE_ENV ==="development"){
     middleware.push(logger);

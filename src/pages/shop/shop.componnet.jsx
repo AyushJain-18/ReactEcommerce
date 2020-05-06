@@ -5,10 +5,10 @@ import {Route} from 'react-router-dom'
 
 import CollectionOverview from '../../components/shop-page/collection-overview/collection-overview.component';
 import CollectionComponent from '../../components/shop-page/collection/collection.component';
-import {addIntialShopData} from '../../reducer/shop/shop.action'
-import {connect} from 'react-redux'
 
-import {getDataFromCollection} from '../../firebase/firestore-setup'
+import {fetchCollectionStartAsync} from '../../reducer/shop/shop.action';
+import {selectFectingState, selectIsCollection} from '../../reducer/shop/shop.selector'
+import {connect} from 'react-redux'
 
 import WithSpinner from '../../components/with-spinner/with-spinner.component';
 const CollectionComponentwithSpinner = WithSpinner(CollectionComponent);
@@ -17,30 +17,33 @@ class ShopComponent extends React.Component{
     state={
         loading: true
     }
-    componentWillMount(){
-      getDataFromCollection('shop', (collections)=>{
-        console.log('shop data is ',collections);
-        this.props.addItemToShopReducer(collections);
-        this.setState({loading: false},()=>console.log('DATA is',this.state))
-      });
+    componentDidMount(){
+     const {fetchCollectionStartAsync} = this.props;
+        fetchCollectionStartAsync();
     }
     render(){
-        const match = this.props.match;
+        const {isCollectionFecting,isCollection,match} = this.props;
+        console.log('isCollectionFecting', !isCollection+'match', match)
         return(
             <div className ='shop-page'>
                 <Route exact path ={`${match.path}`} component={CollectionOverview}/>
                 <Route path={`${match.path}/:categoryId`} 
-                    render={(props)=> <CollectionComponentwithSpinner isLoading={this.state.loading}  {...props}/>}/>
+                    render={(props)=> <CollectionComponentwithSpinner isLoading={!isCollection} {...props}/>}/>
             </div>
         )
     }
 }
-    
+    const mapStateToProps =(state)=>{
+        return {
+            isCollectionFecting: selectFectingState(state),
+            isCollection: selectIsCollection(state)
+        }
+    }
 const mapDispatchToprops = (dispatch)=>{
     return{
-        addItemToShopReducer :(collections)=> dispatch(addIntialShopData(collections))
+        fetchCollectionStartAsync :()=> dispatch(fetchCollectionStartAsync())
     }
 }
-export default connect(null, mapDispatchToprops)(ShopComponent);
+export default connect(mapStateToProps, mapDispatchToprops)(ShopComponent);
 
 

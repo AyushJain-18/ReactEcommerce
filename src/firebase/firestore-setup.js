@@ -23,31 +23,28 @@ const createUserProfileDocument =async (authUser ,otherprops)=>{
       }
       return userRefference;
   }
- 
- 
-  export const getDataFromCollection = async (collectionkey, fn) =>{
-    let shopCollection =await firestore.collection(`/${collectionkey}`);
-        shopCollection.get().then( async (snaphsot)=>{
-         let itemArrayJSObject =   snaphsot.docs.map(shopItem =>{
-              let {items,title} =  shopItem.data();
-                return{
-                  items,
-                  title,
-                  id: shopItem.id,
-                  router: encodeURI(title.toLowerCase())
-                }
-            })
-            let itemJSONobj= itemArrayJSObject.reduce((acc , eachitem)=>{
-              return acc ={
-                ...acc,
-                [`${eachitem.title}`]:eachitem
-              }
-            },{})
-            fn(itemJSONobj);
-          })
-       
- }
-
+  
+  export const mapCollectionArray= (collectionArray =>{
+    let itemArrayJSObject =   collectionArray.docs.map(shopItem =>{
+      let {items,title} =  shopItem.data();
+        return{
+          items,
+          title,
+          id: shopItem.id,
+          router: encodeURI(title.toLowerCase())
+        }
+    })
+    return convertCollectionObjectToJson(itemArrayJSObject);
+  })
+  export const convertCollectionObjectToJson= (jSObject)=>{
+    let itemJSONobj= jSObject.reduce((acc , eachitem)=>{
+      return acc ={
+        ...acc,
+        [`${eachitem.title}`]:eachitem
+      }
+    },{})
+    return itemJSONobj;
+  }
   export const enterShopData = async (collectionKey, arrayToAdd) => {
     // code for update shop data 
     // let shopCollection = await firestore.collection(`${collectionKey}`);
@@ -58,5 +55,14 @@ const createUserProfileDocument =async (authUser ,otherprops)=>{
     //   });
     //   return await batch.commit()
   }
+
+  export const getDataFromCollection = async (collectionkey, fn) =>{
+    let shopCollection =await firestore.collection(`/${collectionkey}`);
+        shopCollection.get().then(  snaphsot=>{
+             let itemJSONobj =  mapCollectionArray(snaphsot)
+            fn(itemJSONobj);
+          })
+       
+ }
 
   export default createUserProfileDocument ;
