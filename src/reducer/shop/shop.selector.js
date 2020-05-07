@@ -18,6 +18,6 @@ export const selectFectingState = createSelector(
 )
 
 export const selectIsCollection = createSelector(
-    [selectShop], shop=> !!shop.collections
+    [selectShop], shop=> !shop.collections  // !!
 )
    

@@ -30,7 +30,7 @@ export const fetchCollectionFailure = (errorMessage)=>{
 // return a function and thus add dispatch to them 
 export const fetchCollectionStartAsync =()=>{
     // dispatch =()=>{
-        return dispatch =>{
+        return  (dispatch) =>{
             dispatch(fetchCollectionStart())
             let shopCollection =firestore.collection('shop');
                 shopCollection.get()

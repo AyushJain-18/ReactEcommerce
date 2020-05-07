@@ -3,13 +3,19 @@ import React from 'react';
 import './shop.styles.scss';
 import {Route} from 'react-router-dom'
 
-import CollectionOverview from '../../components/shop-page/collection-overview/collection-overview.component';
-import CollectionComponent from '../../components/shop-page/collection/collection.component';
-
 import {fetchCollectionStartAsync} from '../../reducer/shop/shop.action';
 import {selectFectingState, selectIsCollection} from '../../reducer/shop/shop.selector'
 import {connect} from 'react-redux'
 
+//container
+import CollectionOverviewContainer from '../../components/shop-page/collection-overview/collection.container';
+import CollectionContainer from '../../components/shop-page/collection/collection.container';
+
+//compoennt
+import CollectionOverview from '../../components/shop-page/collection-overview/collection-overview.component';
+import CollectionComponent from '../../components/shop-page/collection/collection.component';
+
+// with spinner
 import WithSpinner from '../../components/with-spinner/with-spinner.component';
 const CollectionComponentwithSpinner = WithSpinner(CollectionComponent);
 const CollectionOverviewwithSpinner = WithSpinner(CollectionOverview);
@@ -26,9 +32,16 @@ class ShopComponent extends React.Component{
         console.log('isCollectionFecting', !isCollection+'match', match)
         return(
             <div className ='shop-page'>
-                <Route exact path ={`${match.path}`} component={CollectionOverview}/>
-                <Route path={`${match.path}/:categoryId`} 
-                    render={(props)=> <CollectionComponentwithSpinner isLoading={!isCollection} {...props}/>}/>
+                <Route exact path ={`${match.path}`} component={CollectionOverviewContainer}/>
+                <Route path={`${match.path}/:categoryId`} component={CollectionContainer} />
+
+{/*
+                 <Route path={`${match.path}/:categoryId`} 
+                    render={
+                        (props)=> <CollectionComponentwithSpinner 
+                                    isLoading={isCollection} {...props}/>
+                            }/>
+*/}
             </div>
         )
     }
