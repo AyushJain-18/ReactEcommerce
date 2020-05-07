@@ -15,7 +15,7 @@ import thunk from 'redux-thunk';
 // redux-saga
 import createSagaMiddelware from 'redux-saga';
 
-import {fetchCollectionStart} from './shop/shop.saga'
+import rootSaga from './root-saga'
 
 const sagaMiddelware = createSagaMiddelware() // in this function we can pass configuraton object
 const middleware = [
@@ -35,7 +35,7 @@ if(process.env.NODE_ENV ==="development"){
 const store = createStore(combineReducers , applyMiddleware(...middleware));
             
 //here we are running our each saga 
-             sagaMiddelware.run(fetchCollectionStart)
+             sagaMiddelware.run(rootSaga)
 
 // create a persist-store 
 // a libarary that use memoiztion and hydrated our store with some pre-loaded state value
