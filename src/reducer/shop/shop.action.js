@@ -23,7 +23,7 @@ export const fetchCollectionFailure = (errorMessage)=>{
         payload: errorMessage
     }
 }
-
+// REDUX-THUNK code
 // we can return function from action insted of return an JS object
 
 //  what redux thumk middelware dose is , it check all the action and see which action 

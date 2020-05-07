@@ -3,7 +3,7 @@ import React from 'react';
 import './shop.styles.scss';
 import {Route} from 'react-router-dom'
 
-import {fetchCollectionStartAsync} from '../../reducer/shop/shop.action';
+import {fetchCollectionStartAsync, fetchCollectionStart} from '../../reducer/shop/shop.action';
 import {selectFectingState, selectIsCollection} from '../../reducer/shop/shop.selector'
 import {connect} from 'react-redux'
 
@@ -54,7 +54,11 @@ class ShopComponent extends React.Component{
     }
 const mapDispatchToprops = (dispatch)=>{
     return{
-        fetchCollectionStartAsync :()=> dispatch(fetchCollectionStartAsync())
+        fetchCollectionStartAsync :()=> dispatch(fetchCollectionStart())
+
+        // while using thunk
+        // fetchCollectionStartAsync :()=> dispatch(fetchCollectionStartAsync())
+      
     }
 }
 export default connect(mapStateToProps, mapDispatchToprops)(ShopComponent);

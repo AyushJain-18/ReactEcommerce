@@ -12,8 +12,16 @@ import  combineReducers from './root-reducer'
 //redux-thunk a middelware that allow as to fire finctions
 import thunk from 'redux-thunk';
 
+// redux-saga
+import createSagaMiddelware from 'redux-saga';
 
-const middleware = [thunk];
+import {fetchCollectionStart} from './shop/shop.saga'
+
+const sagaMiddelware = createSagaMiddelware() // in this function we can pass configuraton object
+const middleware = [
+    sagaMiddelware
+    // thunk
+];
 console.log('process.env',process.env);
 if(process.env.NODE_ENV ==="development"){
     middleware.push(logger);
@@ -25,7 +33,12 @@ if(process.env.NODE_ENV ==="development"){
 //     : composeWithDevTools(applyMiddleware(...middlewares));
 
 const store = createStore(combineReducers , applyMiddleware(...middleware));
+            
+//here we are running our each saga 
+             sagaMiddelware.run(fetchCollectionStart)
+
 // create a persist-store 
+// a libarary that use memoiztion and hydrated our store with some pre-loaded state value
  export const persistor = persistStore(store)
 
 export default store;
@@ -33,7 +46,7 @@ export default store;
 
 
 
-/**
+/** createStore
  * * @returns A Redux store that lets you read the state, dispatch actions and
  *   subscribe to changes.
  * 

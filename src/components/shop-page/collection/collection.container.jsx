@@ -17,6 +17,7 @@ import collectionComponent from './collection.component'
 
 const mapStateToprops = createStructuredSelector({
         isLoading: selectIsCollection
+        // isLoading: state=>!selectIsCollection(state)
     })
 
 const CollectionContainer = compose(
