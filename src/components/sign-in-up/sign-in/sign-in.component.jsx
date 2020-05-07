@@ -9,7 +9,8 @@ import {Link} from 'react-router-dom'
 import {signInWithGoogle ,signInwithEmailAndPassword} from '../../../firebase/firebase-auth-method';
 
 import {connect} from 'react-redux';
-import {HideCart} from '../../../reducer/cart/cart.action'
+import {HideCart} from '../../../reducer/cart/cart.action';
+import {gmailLoginStart} from '../../../reducer/user/user.action'
 class SignInOutComponent extends React.Component{
     constructor(){
         super()
@@ -75,9 +76,11 @@ render(){
                                 Sign In
                                 </CustumButton>
                         <CustumButton
+                            type='button'
                             onClick ={(event)=>{
-                                event.preventDefault();
-                                signInWithGoogle();
+                                // event.preventDefault();
+                                //signInWithGoogle();
+                                this.props.googleSignIn()
                             }}
                             isGoogleSignIN >
                                 Google Sign In
@@ -89,7 +92,8 @@ render(){
 }
 }
 const mapDispatchToProps =(dispatch)=>({
-    hideCartAction: ()=>dispatch(HideCart())
+    hideCartAction: ()=>dispatch(HideCart()),
+    googleSignIn: ()=> dispatch(gmailLoginStart())
 })
   
 export default connect(null,mapDispatchToProps)(SignInOutComponent) ;

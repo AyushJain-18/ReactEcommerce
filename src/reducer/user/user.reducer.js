@@ -5,15 +5,25 @@
 import {UserActionType} from './user.types'
 
 const INITIAL_STATE ={
-    currentUser: null
+    currentUser: null,
+    errorMessage: null
 }
 const userReducer = (state = INITIAL_STATE, action)=>{
     switch(action.type){
-        case UserActionType.SET_CURRENT_USER :
+        case UserActionType.GMAIL_LOGIN_SUCCESS:
+        case UserActionType.EMAIL_LOGIN_SUCCESS:
             return{
                 ...state,
-                currentUser: action.payload
+                currentUser: action.payload,
+                errorMessage: null
             }
+        case UserActionType.GMAIL_LOGIN_FAILURE:
+        case UserActionType.EMAIL_LOGIN_FAILURE:
+                return{
+                    ...state,
+                    errorMessage: action.payload
+                }
+
         default:
             return state;
     }

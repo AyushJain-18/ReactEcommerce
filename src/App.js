@@ -16,26 +16,27 @@ class App extends React.Component {
   componentDidMount(){
     // enterShopData(Object.values(SHOP_DATA).map(
     //   ({title,items})=>({title, items})))
-    const{actionForUserStateChange} = this.props;
-    this.authUsnsubscribeFunction= auth.onAuthStateChanged( async userAuth=>{
-     if(userAuth===null){
-        this.props.emptyCartAction();
-     }
-        const userRef = await createUserProfileDocument(userAuth)
-        if(userRef){
-          userRef.onSnapshot(snaphot =>{
-            console.log('Snapshot is',snaphot) // snapshot object  that we are getting on subscribe 
-            console.log(snaphot.data())   // to get snapshot data 
-            actionForUserStateChange({
-              id: snaphot.id,
-              ...snaphot.data()
-               })  
-              })
+
+    // const{actionForUserStateChange} = this.props;
+    // this.authUsnsubscribeFunction= auth.onAuthStateChanged( async userAuth=>{
+    //  if(userAuth===null){
+    //     this.props.emptyCartAction();
+    //  }
+    //     const userRef = await createUserProfileDocument(userAuth)
+    //     if(userRef){
+    //       userRef.onSnapshot(snaphot =>{
+    //         console.log('Snapshot is',snaphot) // snapshot object  that we are getting on subscribe 
+    //         console.log(snaphot.data())   // to get snapshot data 
+    //         actionForUserStateChange({
+    //           id: snaphot.id,
+    //           ...snaphot.data()
+    //            })  
+    //           })
           
-        } else{
-          actionForUserStateChange(null)
-        }
-    })
+    //     } else{
+    //       actionForUserStateChange(null)
+    //     }
+    // })
   }
   componentWillUnmount(){
      this.authUsnsubscribeFunction();
