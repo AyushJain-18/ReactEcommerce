@@ -9,7 +9,6 @@ class SignInOutLandingComponent extends React.Component{
         super()
     }
     render(){
-        console.log(this.props.history.location.pathname)
         return(
             <div className='sigin-container'>
                  {

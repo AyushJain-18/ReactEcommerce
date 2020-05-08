@@ -1,12 +1,12 @@
 import {takeLatest, all ,call,put} from 'redux-saga/effects'
 import { UserActionType } from './user.types'
 
-import { googleAuthProvider } from '../../firebase/firebase-auth-method'
+import { googleAuthProvider, userSignIN}from '../../firebase/firebase-auth-method'
 import {auth} from '../../firebase/firebase-setup'
 import createUserProfileDocument from '../../firebase/firestore-setup'
 
 
-import {LoginFailure, LoginSuccess, } from './user.action'
+import {LoginFailure, LoginSuccess,userSignOutSuccess, userSignOutFailure } from './user.action'
 
 
 function* getSnapshotFromUserAuth(user){
@@ -18,8 +18,22 @@ function* getSnapshotFromUserAuth(user){
              yield put(LoginFailure(error.message))
     }
 }
-
-
+function* signOut(){
+    try{
+        yield auth.signOut();
+        yield put(userSignOutSuccess())
+        } catch(error){
+        yield put(userSignOutFailure(error))
+    }
+ 
+}
+function* getUserSession(){
+    const userAuth =  yield userSignIN()
+        if(!userAuth){
+            return 
+        }
+        yield getSnapshotFromUserAuth(userAuth)
+}
 function* gmailLogin(){
     try{
             const {user} = yield auth.signInWithPopup(googleAuthProvider)
@@ -28,7 +42,6 @@ function* gmailLogin(){
         yield put(LoginFailure(error.message))
     }
 }
-
 
 function* emailLogin({payload:{email,password}}){
     try{
@@ -42,10 +55,10 @@ function* emailLogin({payload:{email,password}}){
           } else {
                   alert(errorMessage);
           }
-          console.log(error);
           yield put(LoginFailure(errorMessage))
         }
   }
+
 function* startEmailLogin(){
     yield takeLatest(UserActionType.EMAIL_LOGIN_START, emailLogin)
 }
@@ -53,11 +66,21 @@ function* startGmailSignIn(){
     yield takeLatest(UserActionType.GMAIL_LOGIN_START, gmailLogin)
 } 
 
+function* onCheckUserSession(){
+    yield takeLatest(UserActionType.CHECK_USER_SESSION, getUserSession)
+}
+function* startUserSignOut(){
+
+    yield takeLatest(UserActionType.USER_SIGN_OUT_START, signOut)    
+}
+
 export default function* userSaga(){
     yield all(
         [
             call(startGmailSignIn),
-            call(startEmailLogin)
+            call(startEmailLogin),
+            call(onCheckUserSession),
+            call(startUserSignOut)
         ]
     )
 }

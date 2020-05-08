@@ -9,7 +9,6 @@ import {cartItemSelector} from '../../../reducer/cart/cart.reducer';
 import {selectTotalCartItemQuantity} from '../../../reducer/cart/cart.selector'
 
 const CartIcon =(props) =>{
-    console.log('I Had  Rendeer RUNnnnnnnnnnnnn..........');
     return(
         <div className="cart-icon" onClick={props.toggleCartDisplayStatus}>
                 <ShoppingIcon className ="shopping-icon"/>

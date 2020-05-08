@@ -2,7 +2,6 @@ import React from 'react';
  import {Link} from 'react-router-dom';
 
 export const Routerhomepage = (props)=>{
-    console.log('homePage Props are ',props)
     return(
             <div>
                 <h1>HOMEPAGE</h1>
@@ -16,7 +15,6 @@ export const Routerhomepage = (props)=>{
 
 
 export const Title = (props )=>{
-    console.log(props)
     return(
     <div>
         <h1>Title</h1>
@@ -26,7 +24,6 @@ export const Title = (props )=>{
 
 
 export const TopicDetails = (props)=>{
-    console.log(props)
     return(
     <div>
         <h1>TopicDetail: {props.match.params.titleID}</h1>

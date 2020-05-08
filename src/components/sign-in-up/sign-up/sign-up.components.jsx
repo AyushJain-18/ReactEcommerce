@@ -18,7 +18,6 @@ class SignUpCompoenent extends React.Component{
             };
     }
     handelChange =(event) =>{
-        console.log('Handel change',event.target)
         const{name,value}= event.target;
         this.setState({
             [name]: value
@@ -36,7 +35,6 @@ class SignUpCompoenent extends React.Component{
             return;
         }
        const userRefference = await signUpWithEmailAndPassword({...this.state});
-       console.log("Result", userRefference)
        if(userRefference){
         this.setState({
             displayName : '',

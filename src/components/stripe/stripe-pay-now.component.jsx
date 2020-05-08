@@ -13,7 +13,6 @@ class  PayNowComponent extends React.Component{
     priceInScent = this.props.price*100;
     publishableKey ='pk_test_4b9bCmmYb4mUbXuV6ygdQE4u00Hzn49rYV';
     onToken =token=>{
-        console.log(token)
         alert('Payement Successfull');
     }
     render(){

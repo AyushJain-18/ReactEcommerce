@@ -9,13 +9,11 @@ export const googleAuthProvider = provider
 
 
 export const signInWithGoogle =()=> auth.signInWithPopup(provider);
-
 // when user of my application clicked on Sign in with google that time we will
 // make a token access request to Authoriaztion endpoint
 
 //2.Sign-in with email and password
 export const signInwithEmailAndPassword = async({email, password}) =>{
-        console.log('email, password', email, password)
   try{
       await auth.signInWithEmailAndPassword(email, password)
       } catch(error){
@@ -26,7 +24,6 @@ export const signInwithEmailAndPassword = async({email, password}) =>{
         } else {
                 alert(errorMessage);
         }
-        console.log(error);
       }
 }
 
@@ -41,9 +38,7 @@ export const signUpWithEmailAndPassword = async (user)=>{
         const {displayName, email, password} = user;
     try{
         const {user} =  await auth.createUserWithEmailAndPassword(email,password); // return auth user
-        console.log('createUserWithEmailAndPassword', user);
         const userRefference = await createUserWithEmailAndPassword(user,{displayName});
-        console.log('userRefference', userRefference);
         return userRefference;
     } catch(error){
             const errorCode = error.code;
@@ -53,7 +48,18 @@ export const signUpWithEmailAndPassword = async (user)=>{
             } else {
                     alert(errorMessage);
             }
-            console.log(error);
     }
+}
+
+// 5. observable for user-session
+
+export const userSignIN =()=>{
+        return new Promise((resolve, reject)=>{
+                const unsubscribe =   auth.onAuthStateChanged(userAuth=>{
+                        unsubscribe()
+                        resolve(userAuth)
+                        },reject)
+                
+      })
 }
 

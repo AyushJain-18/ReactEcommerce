@@ -7,7 +7,6 @@ import {selectItem} from '../../../reducer/shop/shop.selector'
 import PreviewItems from '../preview-items/preview-items.components'
 
 const CollectionComponent =({match, categoryItem})=>{
-    console.log(match, categoryItem)
     return(
     <div className ="collection-page">  
     <div className='title'>{categoryItem.title}</div>

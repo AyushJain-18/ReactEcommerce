@@ -5,7 +5,7 @@ import {auth} from './firebase/firebase-setup'
 import createUserProfileDocument ,{enterShopData} from './firebase/firestore-setup'
 
 import {connect} from 'react-redux'
-import {setInitialState} from './reducer/user/user.action';
+import {setInitialState, checkUserSession} from './reducer/user/user.action';
 
 
 import RouteComponent from './routes'
@@ -14,6 +14,8 @@ import { EmptyCart } from './reducer/cart/cart.action';
 class App extends React.Component {
 
   componentDidMount(){
+    const {checkUserSession} = this.props;
+    checkUserSession()
     // enterShopData(Object.values(SHOP_DATA).map(
     //   ({title,items})=>({title, items})))
 
@@ -39,7 +41,7 @@ class App extends React.Component {
     // })
   }
   componentWillUnmount(){
-     this.authUsnsubscribeFunction();
+     // this.authUsnsubscribeFunction();
   }
   render(){
     return (
@@ -54,8 +56,10 @@ const mapStateToprops = null;
 // this dispatch/satet will be passed in from connect
 const mapDispatchToprops = (dispatch)=>{
     return{
-      actionForUserStateChange : (user)=>dispatch(setInitialState(user)),
-      emptyCartAction: ()=>dispatch(EmptyCart())
+      //actionForUserStateChange : (user)=>dispatch(setInitialState(user)),
+      emptyCartAction: ()=>dispatch(EmptyCart()),
+      checkUserSession: ()=> dispatch(checkUserSession())
+
       
     }
 }

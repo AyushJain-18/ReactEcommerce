@@ -38,7 +38,6 @@ class PreviewSingleItem extends React.Component{
         if(!this.props.location.item){
             return <Redirect to= '/'/>
         }else{
-            console.log(this.props);
         const{id,name,imageUrl,price} = this.props.item;
         return(
             <div key ={id} className="single-item-container">

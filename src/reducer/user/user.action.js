@@ -33,3 +33,27 @@ export const emailLoginStart = (email,password)=>{
         payload: {email, password}
     }
 }
+
+export const checkUserSession =()=>{
+    return  {
+                type: UserActionType.CHECK_USER_SESSION
+            }
+}
+
+export const userSignOutStart =()=>{
+    return  {
+                type: UserActionType.USER_SIGN_OUT_START
+            }
+}
+
+export const userSignOutSuccess =()=>{
+    return  {
+                type: UserActionType.USER_SIGN_OUT_SUCCESS
+            }
+}
+export const userSignOutFailure =(error)=>{
+    return  {
+                type: UserActionType.USER_SIGN_OUT_FAILURE,
+                payload: error
+            }
+}

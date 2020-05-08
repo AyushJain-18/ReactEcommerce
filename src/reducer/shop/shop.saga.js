@@ -22,7 +22,6 @@ function* getCollection(){
      } catch(error){
         yield  put(fetchCollectionFailure(error.message))
     }
-    yield console.log('fetched')
 }
 export function* fetchCollectionStart(){
     yield takeLatest(SHOP_ACTION.FETCH_COLLECTION_START, getCollection) 

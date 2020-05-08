@@ -22,7 +22,6 @@ class SignInOutComponent extends React.Component{
     handleSubmit= async (event)=>{
         event.preventDefault();
         const {email, password} =this.state
-        console.log(password)
         this.props.emailLoginStart(email, password)
         this.setState({
             email : '',

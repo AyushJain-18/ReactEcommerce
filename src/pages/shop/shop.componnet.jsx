@@ -29,7 +29,6 @@ class ShopComponent extends React.Component{
     }
     render(){
         const {isCollectionFecting,isCollection,match} = this.props;
-        console.log('isCollectionFecting', !isCollection+'match', match)
         return(
             <div className ='shop-page'>
                 <Route exact path ={`${match.path}`} component={CollectionOverviewContainer}/>

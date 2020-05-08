@@ -19,8 +19,8 @@ import {createStructuredSelector} from 'reselect'
 
 import {HeaderContainer,LogoContainer,OptionDiv,OptionLink,OptionsContainer} from '../header/header.styles'
 
-const HeaderComponent =({currentUser,hidden})=>{
-    console.log('header component', currentUser)
+import {userSignOutStart} from '../../reducer/user/user.action'
+const HeaderComponent =({currentUser,hidden, actionSignOutStart})=>{
 return(
         <HeaderContainer>
                 <LogoContainer  to="/"><Logo className = 'logo'/></LogoContainer>
@@ -31,7 +31,7 @@ return(
                 </OptionLink>
                     {currentUser? 
                     <OptionDiv>
-                    <div onClick ={signOut}> SIGN OUT</div>
+                    <div onClick ={actionSignOutStart}> SIGN OUT</div>
                     </OptionDiv>: 
                      <OptionLink>
                     <Link  to= "/signin"> SIGN IN </Link>
@@ -58,8 +58,12 @@ const mapStateToProps = createStructuredSelector({
 //                 hidden:   state.cart.hidden
 //             }
 //     )
-
-export default connect(mapStateToProps)(HeaderComponent);
+const mapDispatchToProps = (dispatch)=>{
+    return{
+        actionSignOutStart: ()=> dispatch(userSignOutStart())
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderComponent);
 
 
 // connect :- A higher order function which will take function as a parameter 
