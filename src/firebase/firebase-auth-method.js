@@ -6,7 +6,9 @@ import createUserWithEmailAndPassword from './firestore-setup'
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({prompt:'select_account'});
 export const googleAuthProvider = provider
-// export const signInWithGoogle =()=> auth.signInWithPopup(provider);
+
+
+export const signInWithGoogle =()=> auth.signInWithPopup(provider);
 
 // when user of my application clicked on Sign in with google that time we will
 // make a token access request to Authoriaztion endpoint

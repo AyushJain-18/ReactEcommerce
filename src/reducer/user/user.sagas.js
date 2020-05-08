@@ -6,26 +6,58 @@ import {auth} from '../../firebase/firebase-setup'
 import createUserProfileDocument from '../../firebase/firestore-setup'
 
 
-import {gmailLoginFailure, gmailLoginSuccess} from './user.action'
+import {LoginFailure, LoginSuccess, } from './user.action'
+
+
+function* getSnapshotFromUserAuth(user){
+    try{
+        const userReffernce = yield createUserProfileDocument(user);
+        const userSnapshot  = yield userReffernce.get();
+        yield put(LoginSuccess({ id: userSnapshot.id, ...userSnapshot.data()}))
+    }catch(error){
+             yield put(LoginFailure(error.message))
+    }
+}
 
 
 function* gmailLogin(){
     try{
-            const {user} =        yield auth.signInWithPopup(googleAuthProvider)
-            const userReffernce = yield createUserProfileDocument(user);
-            const userSnapshot  = yield userReffernce.get();
-            yield put(gmailLoginSuccess({ id: userSnapshot.id, ...userSnapshot.data()}))
+            const {user} = yield auth.signInWithPopup(googleAuthProvider)
+            yield getSnapshotFromUserAuth(user)
     }catch(error){
-        yield put(gmailLoginFailure(error.message))
+        yield put(LoginFailure(error.message))
     }
-   
- 
+}
+
+
+function* emailLogin({payload:{email,password}}){
+    try{
+        const {user}=         yield  auth.signInWithEmailAndPassword(email, password);
+        yield  getSnapshotFromUserAuth(user)
+        } catch(error){
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          if (errorCode === 'auth/wrong-password') {
+               alert('Wrong password.');
+          } else {
+                  alert(errorMessage);
+          }
+          console.log(error);
+          yield put(LoginFailure(errorMessage))
+        }
+  }
+function* startEmailLogin(){
+    yield takeLatest(UserActionType.EMAIL_LOGIN_START, emailLogin)
 }
 function* startGmailSignIn(){
-    yield console.log('ji')
     yield takeLatest(UserActionType.GMAIL_LOGIN_START, gmailLogin)
 } 
 
 export default function* userSaga(){
-    yield all([call(startGmailSignIn)])
+    yield all(
+        [
+            call(startGmailSignIn),
+            call(startEmailLogin)
+        ]
+    )
 }

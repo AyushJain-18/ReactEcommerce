@@ -42,7 +42,6 @@ class App extends React.Component {
      this.authUsnsubscribeFunction();
   }
   render(){
-    console.log("APP renders", this.props)
     return (
       <div>
             <RouteComponent/>

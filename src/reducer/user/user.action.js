@@ -15,33 +15,21 @@ export const gmailLoginStart = ()=>{
         type: UserActionType.GMAIL_LOGIN_START
     }
 }
-export const gmailLoginSuccess = (user)=>{
+export const LoginSuccess = (user)=>{
     return{
-        type: UserActionType.GMAIL_LOGIN_SUCCESS,
+        type: UserActionType.LOGIN_SUCCESS,
         payload: user
     }
 }
-export const gmailLoginFailure = (error)=>{
+export const LoginFailure = (error)=>{
     return{
-        type: UserActionType.GMAIL_LOGIN_FAILURE,
+        type: UserActionType.LOGIN_FAILURE,
         payload: error
     }
 }
-export const emailLoginStart = (userAndPassword)=>{
+export const emailLoginStart = (email,password)=>{
     return{
         type: UserActionType.EMAIL_LOGIN_START,
-        payload: userAndPassword
-    }
-}
-export const emailLoginSuccess = (user)=>{
-    return{
-        type: UserActionType.EMAIL_LOGIN_SUCCESS,
-        payload: user
-    }
-}
-export const emailLoginFailure = (error)=>{
-    return{
-        type: UserActionType.EMAIL_LOGIN_FAILURE,
-        payload: error
+        payload: {email, password}
     }
 }

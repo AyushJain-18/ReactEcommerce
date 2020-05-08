@@ -10,7 +10,7 @@ import {signInWithGoogle ,signInwithEmailAndPassword} from '../../../firebase/fi
 
 import {connect} from 'react-redux';
 import {HideCart} from '../../../reducer/cart/cart.action';
-import {gmailLoginStart} from '../../../reducer/user/user.action'
+import {gmailLoginStart, emailLoginStart} from '../../../reducer/user/user.action'
 class SignInOutComponent extends React.Component{
     constructor(){
         super()
@@ -21,7 +21,9 @@ class SignInOutComponent extends React.Component{
     }
     handleSubmit= async (event)=>{
         event.preventDefault();
-        await signInwithEmailAndPassword({...this.state})
+        const {email, password} =this.state
+        console.log(password)
+        this.props.emailLoginStart(email, password)
         this.setState({
             email : '',
             password: ''
@@ -29,7 +31,6 @@ class SignInOutComponent extends React.Component{
     }
     handleOnchnage=(event)=>{
             const{name,value} = event.target;
-            console.log("name is ",name +'  value is ',+value);
             this.setState(prevState =>{
                 return { [name]: value}
             })
@@ -52,7 +53,7 @@ render(){
                                 </div>
                         </Link>
             </div>
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit}> 
 
                 <FormInput 
                     type="email" 
@@ -93,7 +94,8 @@ render(){
 }
 const mapDispatchToProps =(dispatch)=>({
     hideCartAction: ()=>dispatch(HideCart()),
-    googleSignIn: ()=> dispatch(gmailLoginStart())
+    googleSignIn: ()=> dispatch(gmailLoginStart()),
+    emailLoginStart: (email, password)=> dispatch(emailLoginStart(email, password))
 })
   
 export default connect(null,mapDispatchToProps)(SignInOutComponent) ;
