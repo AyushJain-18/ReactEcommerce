@@ -14,11 +14,14 @@ import HeaderComponnets from './components/header/header.components';
 import SignInOutLandingComponent from './pages/sign-in-out-landing/sign-in-out.page';
 import PreviewSingleItem from './components/shop-page/preview-single-item/preview-single-item.component'
 import Checkout from './pages/checkout/checkout.page'
+import HeaderContainer from './components/header/Header.container';
+
 class RouteComponent extends React.Component{
     render(){
             return(
                 <div>
-                    <HeaderComponnets/>
+                    {/* <HeaderComponnets/> */}
+                    <HeaderContainer/>
                      <Switch>
                             <Route exact path= "/" component ={Homepage}/>
                             <Route exact path ='/preview/:id/' component ={PreviewSingleItem}/>

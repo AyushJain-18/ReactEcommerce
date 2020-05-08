@@ -6,7 +6,8 @@ import {UserActionType} from './user.types'
 
 const INITIAL_STATE ={
     currentUser: null,
-    errorMessage: null
+    errorMessage: null,
+    isFetchingUserDetail: false 
 }
 const userReducer = (state = INITIAL_STATE, action)=>{
     switch(action.type){
@@ -14,7 +15,8 @@ const userReducer = (state = INITIAL_STATE, action)=>{
             return{
                 ...state,
                 currentUser: action.payload,
-                errorMessage: null
+                errorMessage: null,
+                isFetchingUserDetail: false
             }
         case UserActionType.USER_SIGN_OUT_SUCCESS:
             return{
@@ -26,9 +28,14 @@ const userReducer = (state = INITIAL_STATE, action)=>{
         case UserActionType.USER_SIGN_OUT_FAILURE:
                 return{
                     ...state,
-                    errorMessage: action.payload
+                    errorMessage: action.payload,
+                    isFetchingUserDetail: false
                 }
-
+        case UserActionType.CHECK_USER_SESSION:
+            return{
+                ...state,
+                isFetchingUserDetail: true
+            }
         default:
             return state;
     }
