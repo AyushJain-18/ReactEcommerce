@@ -26,16 +26,24 @@ const userReducer = (state = INITIAL_STATE, action)=>{
             }
         case UserActionType.LOGIN_FAILURE:
         case UserActionType.USER_SIGN_OUT_FAILURE:
+        case UserActionType.USER_SIGN_UP_FAILURE:
                 return{
                     ...state,
                     errorMessage: action.payload,
                     isFetchingUserDetail: false
                 }
         case UserActionType.CHECK_USER_SESSION:
+        case UserActionType.EMAIL_LOGIN_START:
+        case UserActionType.USER_SIGN_UP_START:
             return{
                 ...state,
                 isFetchingUserDetail: true
             }
+        case UserActionType.END_SPINNER:
+                return{
+                    ...state,
+                    isFetchingUserDetail: false
+                }
         default:
             return state;
     }

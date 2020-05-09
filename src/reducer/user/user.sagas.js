@@ -6,12 +6,19 @@ import {auth} from '../../firebase/firebase-setup'
 import createUserProfileDocument from '../../firebase/firestore-setup'
 
 
-import {LoginFailure, LoginSuccess,userSignOutSuccess, userSignOutFailure } from './user.action'
+import {
+    LoginFailure,
+    LoginSuccess,
+    userSignOutSuccess,
+    userSignOutFailure,
+    userSignUpFailure,
+    userSignUpSuccess
+    } from './user.action'
 
 
-function* getSnapshotFromUserAuth(user){
+function* getSnapshotFromUserAuth(user, otherPorps){
     try{
-        const userReffernce = yield createUserProfileDocument(user);
+        const userReffernce = yield createUserProfileDocument(user, otherPorps);
         const userSnapshot  = yield userReffernce.get();
         yield put(LoginSuccess({ id: userSnapshot.id, ...userSnapshot.data()}))
     }catch(error){
@@ -30,7 +37,8 @@ function* signOut(){
 function* getUserSession(){
     const userAuth =  yield userSignIN()
         if(!userAuth){
-            return 
+            yield put({type: UserActionType.END_SPINNER})
+            return
         }
         yield getSnapshotFromUserAuth(userAuth)
 }
@@ -59,6 +67,25 @@ function* emailLogin({payload:{email,password}}){
         }
   }
 
+
+function *startUserSignUp({payload: {email, password,displayName}}){
+    try{
+        const {user} =  yield auth.createUserWithEmailAndPassword(email,password);
+        yield put(userSignUpSuccess({user,displayName}))
+    }catch(error){
+        yield put(userSignUpFailure(error.message))
+    }
+}
+
+function *userSignInAfterSingUp({payload: {user, displayName}}){
+       yield getSnapshotFromUserAuth(user,{displayName})
+}
+function * onSignUpSuccess(){
+    yield takeLatest(UserActionType.USER_SIGN_UP_SUCCESS, userSignInAfterSingUp)
+}
+function* userSignUp(){
+    yield takeLatest(UserActionType.USER_SIGN_UP_START,startUserSignUp)
+}
 function* startEmailLogin(){
     yield takeLatest(UserActionType.EMAIL_LOGIN_START, emailLogin)
 }
@@ -70,7 +97,6 @@ function* onCheckUserSession(){
     yield takeLatest(UserActionType.CHECK_USER_SESSION, getUserSession)
 }
 function* startUserSignOut(){
-
     yield takeLatest(UserActionType.USER_SIGN_OUT_START, signOut)    
 }
 
@@ -80,7 +106,9 @@ export default function* userSaga(){
             call(startGmailSignIn),
             call(startEmailLogin),
             call(onCheckUserSession),
-            call(startUserSignOut)
+            call(startUserSignOut),
+            call(userSignUp),
+            call(onSignUpSuccess)
         ]
     )
 }

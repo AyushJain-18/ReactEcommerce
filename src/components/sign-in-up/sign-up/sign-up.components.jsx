@@ -5,6 +5,8 @@ import CustumButon from '../../CustumComponents/CustumButon/custumButton.compone
 import FormInput from '../../CustumComponents/form-input/form-input.component'
 
 import {signUpWithEmailAndPassword} from '../../../firebase/firebase-auth-method'
+import { connect } from 'react-redux';
+import {userSignUpStart}from '../../../reducer/user/user.action'
 
 class SignUpCompoenent extends React.Component{
 
@@ -24,7 +26,8 @@ class SignUpCompoenent extends React.Component{
         })
     }
     handelSubmit =async(event) =>{
-        const{email, displayName,password,confirmPassword} = this.state
+        const{email, displayName,password,confirmPassword} = this.state;
+        const{startSignUp}= this.props;
         event.preventDefault()
         if(!email|| !displayName||!password||!confirmPassword){
             alert('Please fill all details');
@@ -34,15 +37,16 @@ class SignUpCompoenent extends React.Component{
             alert('CONFIRM PASSWORD did not match');
             return;
         }
-       const userRefference = await signUpWithEmailAndPassword({...this.state});
-       if(userRefference){
-        this.setState({
-            displayName : '',
-            email: '',
-            password: '',
-            confirmPassword: '',
-        })
-}
+        startSignUp({email,password,displayName})
+    //    const userRefference = await signUpWithEmailAndPassword({...this.state});
+    //    if(userRefference){
+    //     this.setState({
+    //         displayName : '',
+    //         email: '',
+    //         password: '',
+    //         confirmPassword: '',
+    //     })
+    //}
     }
   render(){
       const {displayName, email, password, confirmPassword} = this.state
@@ -88,5 +92,9 @@ class SignUpCompoenent extends React.Component{
       )
   }
 }
-
-export default SignUpCompoenent;
+const mapDispatchToProps = (dispatch)=>{
+    return{
+        startSignUp: (userDetails)=> dispatch(userSignUpStart(userDetails))
+    }    
+}
+export default connect(null, mapDispatchToProps)(SignUpCompoenent);
