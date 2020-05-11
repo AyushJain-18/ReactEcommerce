@@ -15,8 +15,6 @@ import {selectCollections} from '../../../reducer/shop/shop.selector'
 class PreviewSingleItem extends React.Component{
     componentDidMount(){
         this.props.hideCartAction();
-    }
-    componentDidMount(){
         const item = this.props.location.item
         this.props.updateItemAction(item);
     }
@@ -28,9 +26,9 @@ class PreviewSingleItem extends React.Component{
 
      getRandomItem =(itemid)=>{
         let ItemsArrays =[]
-        this.props.collections.map(eachCategory=>{
-          eachCategory.items.forEach(item =>ItemsArrays.push(item))
-        })
+        this.props.collections.map(
+            eachCategory=>eachCategory.items.forEach(item =>ItemsArrays.push(item))
+        )
         let randomitem = ItemsArrays.filter(item=> item.id===itemid);
         return randomitem[0]
       }
@@ -42,15 +40,21 @@ class PreviewSingleItem extends React.Component{
         return(
             <div key ={id} className="single-item-container">
                     <div className="single-item-preview">
-                       <div className="single-item-image"
+                            <h1>{name}</h1>
+                        <div className="image-and-mext-button-ctn">
+                        <div className="single-item-image"
                             style ={
                                 {
                                     backgroundImage: `url(${imageUrl})`
                                 }
                             }
                        />
+                        <div className='nxt-btn'onClick={()=>this.selectRandomItem()}>
+                           <span >&#10095;</span>
+                       </div>
+                       </div>
                        <div className ="single-item-content">
-                            <h1>{name}</h1>
+
                             <div className="single-item-description">
                                 <p>
                                 
@@ -61,7 +65,7 @@ class PreviewSingleItem extends React.Component{
                                 </p>
                             </div>
                             <div className ="single-item-price">
-                            <h2>price: {price}$</h2>
+                                <h2>price: {price}$</h2>
                             </div>
                             <div className ='single-button-container'>
                             <CustumButon onClick={()=> this.props.addItemToCartAction(this.props.item)} >Add to cart</CustumButon>
@@ -73,9 +77,7 @@ class PreviewSingleItem extends React.Component{
                             </Link>
                         </div>
                        </div>
-                       <div className='nxt-btn'onClick={()=>this.selectRandomItem()}>
-                           <span >&#10095;</span>
-                       </div>
+                       
                     </div>
             </div>
             

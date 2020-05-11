@@ -1,64 +1,88 @@
 .single-item-container{
     margin-left: 10vw;
+    margin-top: 4vw;
 
     .single-item-preview{
         width: 90%;
         padding: 2vw 3vw;
         border: 1px solid black;
         display: flex;
+        flex-direction: column;
+        align-items: center;
+        .image-and-mext-button-ctn{
+            width: inherit;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
             .single-item-image{
-                width: 50vw;
-                height: 30vw;
+                width: 80%;
+                height: 30%;
                 min-height: 500px;
                 overflow: hidden;
                 background-size: cover;
                 background-position: center;
                 transition: ease-in 0.5s;
+                @media screen and (max-width:800px){
+                    min-height:200px ;
+                }
                 &:hover{
                     transform: scale(1.1);
                 }
             }
-            .single-item-content{
-
-                width: 70vw;
-                display: flex;
-                flex-direction: column;
-                align-items:center ;
-                margin-left: 1vw;
-            
-                    .single-item-description{
-                        width: 70%;
-                        height: 30%;
-                        padding-left: 2vw;
-                        font-size: 20px;
-                    }
-            
-                    .single-button-container{
-                        width:100%;
-                        height: 100%;
-                        display: flex;
-                        justify-content: space-around;
-                        align-items: flex-end;
-                        margin-bottom: 1vw ;
-                            &:hover{
-                                opacity: .8;
-                            }
-                    }
-                    .single-item-price{
-                        margin: 3vw;
-                        letter-spacing: 1.5px;
-                        text-transform: uppercase;
-                    }
-            }
             .nxt-btn{
-                align-self: center;
+                justify-self: flex-end;
                 font-size:2vw;
                 cursor: pointer;
                 transition: ease-out 0.5s;
                 &:hover{
                     transform: scale(1.5)
                 }
+                @media screen and (max-width:800px){
+                    transform: scale(1.5)
+                }
+        }
+    }
+    .single-item-content{
+
+        width: 70vw;
+        display: flex;
+        flex-direction: column;
+        align-items:center ;
+    
+            .single-item-description{
+                width: auto;
+                height: 30%;
+                padding: 20px 148px;
+                font-size: 20px;
+                @media screen and (max-width:800px){
+                    font-size: 20px;
+                    padding: 4px 4px ;
+                }
             }
+            .single-item-price{
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+            }
+    
+            .single-button-container{
+                width:100%;
+                height: 100%;
+                display: flex;
+                justify-content: space-around;
+                align-items: flex-end;
+                    &:hover{
+                        opacity: .8;
+                    }
+                @media screen and (max-width:600px){ 
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+           
+    }
     }
 }
 

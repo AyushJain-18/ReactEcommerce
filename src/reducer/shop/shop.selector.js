@@ -1,9 +1,17 @@
 import {createSelector} from 'reselect';
 
-export const selectShop =(state)=> state.shop;
+export const selectShop =(state)=> {
+    if(state.shop){
+        return state.shop
+    }};
 
 export const selectCollections = createSelector(
-    [selectShop],shop=>Object.values(shop.collections)
+    [selectShop],shop=>{
+        if(shop===null||shop===undefined){
+            return null;
+        }
+         return Object.values(shop.collections)
+    }
 )
 // when have shown here currying
 export const selectItem = (categoryName)=>{

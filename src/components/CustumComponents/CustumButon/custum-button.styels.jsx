@@ -21,11 +21,15 @@ const CustumButtonstyles = css`
     cursor: pointer;
     display: flex;
     justify-content: center;
+     @media screen and (max-width: 600px){
+        min-width: 44vw;
+    };
     &:hover {
         background-color: rgb(252, 235, 235);
         color: black;
         border: 1px solid black;
-      }
+      };
+     
 `;
 
 const googleButtonStyle = css`

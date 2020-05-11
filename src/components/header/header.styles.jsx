@@ -73,6 +73,7 @@ export const MenuContent = styled.div `
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
+        font-size:14px;
         @media screen and (min-width: 800px){
                 display: none;
         }
