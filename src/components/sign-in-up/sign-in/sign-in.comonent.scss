@@ -1,5 +1,4 @@
 .sign-in{
-    width: 25vw;
     display: flex;
     flex-direction: column;
     .title{
@@ -24,8 +23,15 @@
     .button-wrap{
             width: inherit;
             display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-content: flex-end;
+            flex-direction: column;
+            align-content: space-between;
+           
+             //flex-direction: row;
+            //justify-content: space-between;
+            // align-content: flex-end;
+            // @media screen and (min-width: 600px) and (max-width: 992px){
+             
+            // }
+  
     }
 }

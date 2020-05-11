@@ -5,9 +5,6 @@ import SignIn from '../../components/sign-in-up/sign-in/sign-in.component'
 import {withRouter} from 'react-router-dom'
 import SignUpCompoenent from '../../components/sign-in-up/sign-up/sign-up.components';
 class SignInOutLandingComponent extends React.Component{
-    constructor(){
-        super()
-    }
     render(){
         return(
             <div className='sigin-container'>
@@ -15,7 +12,7 @@ class SignInOutLandingComponent extends React.Component{
                      this.props.history.location.pathname === '/signin'?
                      <SignIn/>: <SignUpCompoenent/>
                  }
-                 <img  className ="Background-Image" src={'/homepage.jpg'} />              
+                 <img  className ="Background-Image" src={'/homepage.jpg'} alt="Shop here"/>              
             </div>
         )
     }

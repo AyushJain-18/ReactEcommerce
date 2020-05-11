@@ -11,6 +11,7 @@ const CustumButtonstyles = css`
     line-height: 50px;
     padding: 0 35px 0 35px;
     font-size: 15px;
+    margin-top: 2vw;
     background-color: black;
     color: white;
     text-transform: uppercase;

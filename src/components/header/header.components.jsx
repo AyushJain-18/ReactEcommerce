@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState}from 'react';
 import {Link} from 'react-router-dom'
 
 import './header.styles.scss'
@@ -17,13 +17,30 @@ import {selectCartHiddenStatus} from '../../reducer/cart/cart.selector';
 import {selectCurrentUser} from '../../reducer/user/user.selector'
 import {createStructuredSelector} from 'reselect'
 
-import {HeaderContainer,LogoContainer,OptionDiv,OptionLink,OptionsContainer} from '../header/header.styles'
+import {HeaderContainer,
+        LogoContainer,
+        OptionDiv,
+        OptionLink,
+        OptionsContainer,
+        MenuIcon,
+        MenuContent
+    } from '../header/header.styles'
 
 import {userSignOutStart} from '../../reducer/user/user.action'
 const HeaderComponent =({currentUser,hidden, actionSignOutStart})=>{
+    const [displayMenuClass, setToggleClass]= useState('');
+
+    const changeToggledState = ()=>{
+        if(displayMenuClass){
+            setToggleClass('');
+            return;
+        }
+        setToggleClass('toggeled')
+    }
 return(
+    <div>
         <HeaderContainer>
-                <LogoContainer  to="/"><Logo className = 'logo'/></LogoContainer>
+                <LogoContainer  to="/"><Logo/></LogoContainer>
             <OptionsContainer>
                     <OptionLink  to= "/shop">SHOP</OptionLink>
                 <OptionLink>
@@ -38,10 +55,21 @@ return(
                     </OptionLink> 
                 }
             <CartIcon/>
-            </OptionsContainer>
-        {hidden? null: <CartDropDown/>}
-        
+            <MenuIcon className="fa fa-bars" onClick = {changeToggledState}/>
+            </OptionsContainer> 
+            {hidden? null: <CartDropDown/>}
   </HeaderContainer>
+  {displayMenuClass? 
+  
+    <MenuContent>
+            <Link  to= "/shop">SHOP</Link>
+            <Link  to= "">CONTACT</Link>
+            {currentUser? 
+                <div onClick ={actionSignOutStart}> SIGN OUT</div>: 
+                <Link  to= "/signin"> SIGN IN </Link>
+            }
+  </MenuContent>: null}
+  </div>
 )
 }
 

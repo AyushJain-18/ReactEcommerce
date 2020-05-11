@@ -9,6 +9,10 @@
   background-color: white;
   top: 6vw;
   right: 3vw;
+  @media screen and (max-width: 600px) {
+    top: 10vw;
+    right: 4vw;
+  }
   
   z-index: 5;
   .empty-cart{
