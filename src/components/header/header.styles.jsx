@@ -20,8 +20,8 @@ export const LogoContainer =styled(Link)`
         width: 8vw;
         padding: 2vw;
         @media screen and (max-width: 800px) {
-                width: 30px;
-                height: 25px
+                width: 25px;
+                padding: 0;
             }
 `;
 

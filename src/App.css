@@ -1,12 +1,15 @@
 body{
   font-family: 'Open Sans Condensed', sans-serif;
   padding: 1vw 6vw;
+
 }
 
 a{
   text-decoration: none;
   color: black;
-}
+  
+};
+
 /* 
     "*" sign below line represnts "for all element"
     we have given "border-box" to box-sizing beacuse of padding and margin 
