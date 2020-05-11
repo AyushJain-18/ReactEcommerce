@@ -23,7 +23,7 @@ const PreviewItems =({item ,history,title, AddItemToCartAction})=>{
             }}
         />
         <div className="collection-footer">
-            <span className="name">{name}</span>
+            <span>{name}</span>
             <span className="price">{price}$</span>
         </div>
         <CustumButton className ='custom-button' inverted onClick ={()=>AddItemToCartAction(item)}> Add to Cart</CustumButton>

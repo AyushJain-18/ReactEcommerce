@@ -9,13 +9,13 @@ const HomePageContainer = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
-padding: 20px 80px;
+padding: 1vw 4vw;
+@media screen and (max-width: 600px){
+    padding: 5vw 4vw;
+    display: grid;
+  }
 `;
 class Homepage extends React.Component {
-
-    constructor(props) {
-        super(props)
-    }
     render() {
         return (
             <div>

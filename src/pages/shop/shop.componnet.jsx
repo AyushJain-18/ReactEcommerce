@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 
-import './shop.styles.scss';
 import {Route} from 'react-router-dom'
 
 import {fetchCollectionStartAsync, fetchCollectionStart} from '../../reducer/shop/shop.action';

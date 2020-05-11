@@ -8,7 +8,7 @@ export const HeaderContainer =styled.div`
     display: flex;
     justify-content: space-between;
     margin-bottom: 1vw;
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 800px) {
         background-color:  rgb(250, 246, 246);
         height: 12vw;
         width: 90vw;
@@ -19,7 +19,7 @@ export const LogoContainer =styled(Link)`
         height: 100%;
         width: 8vw;
         padding: 2vw;
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 800px) {
                 width: 30px;
                 height: 25px
             }
@@ -31,7 +31,7 @@ export const OptionsContainer = styled.div`
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 800px) {
                padding-top: 2vw
             }
 `;
@@ -39,7 +39,7 @@ export const OptionsContainer = styled.div`
 const optionsStyle = css`
     padding: 1vw 1.5vw;
     cursor: pointer;
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 800px) {
         display: none;
 }
 
@@ -58,7 +58,7 @@ export const MenuIcon = styled.div `
                 transform: scale(1.2);
                 color: honeydew;
               };
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 800px) {
                 display: block;
                 height :1vw;
                 padding:0 3vw;
@@ -73,7 +73,7 @@ export const MenuContent = styled.div `
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        @media screen and (min-width: 600px){
+        @media screen and (min-width: 800px){
                 display: none;
         }
 `;
