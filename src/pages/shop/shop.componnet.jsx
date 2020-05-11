@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './shop.styles.scss';
 import {Route} from 'react-router-dom'
@@ -19,16 +19,11 @@ import CollectionComponent from '../../components/shop-page/collection/collectio
 import WithSpinner from '../../components/with-spinner/with-spinner.component';
 const CollectionComponentwithSpinner = WithSpinner(CollectionComponent);
 const CollectionOverviewwithSpinner = WithSpinner(CollectionOverview);
-class ShopComponent extends React.Component{
-    state={
-        loading: true
-    }
-    componentDidMount(){
-     const {fetchCollectionStartAsync} = this.props;
-        fetchCollectionStartAsync();
-    }
-    render(){
-        const {isCollectionFecting,isCollection,match} = this.props;
+
+const  ShopComponent = ({match, fetchCollectionStartAsync}) =>{
+    useEffect(()=>{fetchCollectionStartAsync()},[fetchCollectionStartAsync])
+    
+        // const {isCollectionFecting,isCollection,match} = this.props;
         return(
             <div className ='shop-page'>
                 <Route exact path ={`${match.path}`} component={CollectionOverviewContainer}/>
@@ -44,7 +39,6 @@ class ShopComponent extends React.Component{
             </div>
         )
     }
-}
     const mapStateToProps =(state)=>{
         return {
             isCollectionFecting: selectFectingState(state),

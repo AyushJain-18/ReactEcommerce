@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState, useEffect} from 'react';
 import './sign-in.comonent.scss'
 
 import FormInput from '../../CustumComponents/form-input/form-input.component'
@@ -11,33 +11,34 @@ import {signInWithGoogle ,signInwithEmailAndPassword} from '../../../firebase/fi
 import {connect} from 'react-redux';
 import {HideCart} from '../../../reducer/cart/cart.action';
 import {gmailLoginStart, emailLoginStart} from '../../../reducer/user/user.action'
-class SignInOutComponent extends React.Component{
-    constructor(){
-        super()
-        this.state ={
-            email: '',
-            password: ''
-        }
-    }
-    handleSubmit= async (event)=>{
+
+const  SignInOutComponent =({emailLoginStart,googleSignIn,hideCartAction})=>{
+
+    const [userCrendetial, setUserCredebtials]= useState({email: '', password: ''});
+
+    useEffect(
+        ()=>{
+            hideCartAction();
+        },[hideCartAction]
+        )  
+        // []:- passed , to make it componentDidMount function
+
+    const handleSubmit=(event)=>{
         event.preventDefault();
-        const {email, password} =this.state
-        this.props.emailLoginStart(email, password)
-        this.setState({
-            email : '',
-            password: ''
-        })
+        const {email, password} =userCrendetial
+        emailLoginStart(email, password)
     }
-    handleOnchnage=(event)=>{
+    const handleOnchnage=(event)=>{
             const{name,value} = event.target;
-            this.setState(prevState =>{
-                return { [name]: value}
-            })
+            setUserCredebtials({...userCrendetial, [`${name}`]: value})
+            // this.setState(prevState =>{
+            //     return { [name]: value}
+            // })
     }
-    componentDidMount(){
-        this.props.hideCartAction();
-    }
-render(){
+    // componentDidMount(){
+    //     this.props.hideCartAction();
+    // }
+// render(){
     return(
         <div className ="sign-in">
             <h2 className = "title">WANNA LOGIN IN!</h2>
@@ -52,44 +53,44 @@ render(){
                                 </div>
                         </Link>
             </div>
-            <form onSubmit={this.handleSubmit}> 
+            <form onSubmit={handleSubmit}> 
 
                 <FormInput 
                     type="email" 
                     name="email" 
                     label={"Email"}
-                    value={this.state.email} 
+                    value={userCrendetial.email} 
                     required
-                    handleChange={this.handleOnchnage} />
+                    handleChange={handleOnchnage} />
                         
                 <FormInput
                         type="password"
                         name="password"
                         label={"Password"}
-                        value={this.state.password} 
+                        value={userCrendetial.password} 
                         required
-                        handleChange ={this.handleOnchnage}/>
+                        handleChange ={handleOnchnage}/>
 
                 <div className ="button-wrap">
                         <CustumButton 
                             type ="submit">
                                 Sign In
-                                </CustumButton>
+                        </CustumButton>
                         <CustumButton
                             type='button'
                             onClick ={(event)=>{
                                 // event.preventDefault();
                                 //signInWithGoogle();
-                                this.props.googleSignIn()
+                                googleSignIn()
                             }}
                             isGoogleSignIN >
                                 Google Sign In
                                 </CustumButton>
                 </div>
-            </form>
+            </form> 
         </div>
     );
-}
+// }
 }
 const mapDispatchToProps =(dispatch)=>({
     hideCartAction: ()=>dispatch(HideCart()),

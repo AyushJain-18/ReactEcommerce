@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect}from 'react';
 import './App.css';
 
 import {auth} from './firebase/firebase-setup'
@@ -11,11 +11,11 @@ import {setInitialState, checkUserSession} from './reducer/user/user.action';
 import RouteComponent from './routes'
 import { EmptyCart } from './reducer/cart/cart.action';
 
-class App extends React.Component {
-
-  componentDidMount(){
-    const {checkUserSession} = this.props;
-    checkUserSession()
+const App =({checkUserSession})=> {
+  useEffect(()=>{checkUserSession()},[checkUserSession])
+  
+   
+    
     // enterShopData(Object.values(SHOP_DATA).map(
     //   ({title,items})=>({title, items})))
 
@@ -39,18 +39,17 @@ class App extends React.Component {
     //       actionForUserStateChange(null)
     //     }
     // })
-  }
-  componentWillUnmount(){
-     // this.authUsnsubscribeFunction();
-  }
-  render(){
+  // }
+  // componentWillUnmount(){
+  //    // this.authUsnsubscribeFunction();
+  // }
+
     return (
       <div>
             <RouteComponent/>
       </div>
     );
   }
-}
 const mapStateToprops = null;
 
 // this dispatch/satet will be passed in from connect
