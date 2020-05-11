@@ -22,7 +22,7 @@ const CustumButtonstyles = css`
     display: flex;
     justify-content: center;
      @media screen and (max-width: 600px){
-        min-width: 44vw;
+        min-width: 34vw;
     };
     &:hover {
         background-color: rgb(252, 235, 235);

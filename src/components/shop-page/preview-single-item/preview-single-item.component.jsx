@@ -40,44 +40,48 @@ class PreviewSingleItem extends React.Component{
         return(
             <div key ={id} className="single-item-container">
                     <div className="single-item-preview">
-                            <h1>{name}</h1>
-                        <div className="image-and-mext-button-ctn">
-                        <div className="single-item-image"
-                            style ={
-                                {
-                                    backgroundImage: `url(${imageUrl})`
-                                }
-                            }
-                       />
-                        <div className='nxt-btn'onClick={()=>this.selectRandomItem()}>
-                           <span >&#10095;</span>
+                            <h1 className="single-image-title">{name}</h1>
+                        {/* <div className="image-and-mext-button-ctn"> */}
+                        <div className='page-seprator'>
+                                <div className= 'image-container'>
+                                    <div className="single-item-image"
+                                        style ={
+                                            {
+                                                backgroundImage: `url(${imageUrl})`
+                                            }
+                                        }
+                                    />
+                                    <div className='nxt-btn-1'onClick={()=>this.selectRandomItem()}>
+                                        <span >&#10095;</span>
+                                    </div> 
+                                </div>
+                                <div className ="single-item-content">
+                                    <div className="single-item-description">
+                                        <p>
+                                        
+                                        Product has no wonder they are worried — the quality of a product description'
+                                        can make or break a sale, especially if it doesn’t include the 
+                                        information a shopper needs to make a purchase decision. 
+                                        Providing key product details is critical 
+                                        </p>
+                                    </div>
+                                    <div className ="single-item-price">
+                                        <h2>price: {price}$</h2>
+                                    </div>
+                                    <div className ='single-button-container'>
+                                        <CustumButon onClick={()=> this.props.addItemToCartAction(this.props.item)} >Add to cart</CustumButon>
+                                        <CustumButon onClick={()=> this.props.toggleCartDisplay()} >
+                                        {this.props.isCartHidden? 'View cart':'Hide Cart'} 
+                                        </CustumButon>
+                                        <Link to="/shop">
+                                            <CustumButon>More items</CustumButon>
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div className='nxt-btn-2'onClick={()=>this.selectRandomItem()}>
+                                        <span >&#10095;</span>
+                                </div> 
                        </div>
-                       </div>
-                       <div className ="single-item-content">
-
-                            <div className="single-item-description">
-                                <p>
-                                
-                                Product has no wonder they are worried — the quality of a product description'
-                                can make or break a sale, especially if it doesn’t include the 
-                                information a shopper needs to make a purchase decision. 
-                                Providing key product details is critical 
-                                </p>
-                            </div>
-                            <div className ="single-item-price">
-                                <h2>price: {price}$</h2>
-                            </div>
-                            <div className ='single-button-container'>
-                            <CustumButon onClick={()=> this.props.addItemToCartAction(this.props.item)} >Add to cart</CustumButon>
-                            <CustumButon onClick={()=> this.props.toggleCartDisplay()} >
-                               {this.props.isCartHidden? 'View cart':'Hide Cart'} 
-                         </CustumButon>
-                            <Link to="/shop">
-                                <CustumButon>More items</CustumButon>
-                            </Link>
-                        </div>
-                       </div>
-                       
                     </div>
             </div>
             

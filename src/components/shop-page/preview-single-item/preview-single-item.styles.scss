@@ -1,37 +1,104 @@
 .single-item-container{
     margin-left: 10vw;
-    margin-top: 4vw;
+     @media screen and (max-width:800px){
+        margin-top: 4vw;
+    }
+   
 
     .single-item-preview{
         width: 90%;
-        padding: 2vw 3vw;
+        padding-bottom: 1vw;
         border: 1px solid black;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        .image-and-mext-button-ctn{
-            width: inherit;
+        .single-image-title{
+            align-self: center;
+        }
+        .page-seprator{
             display: flex;
             flex-direction: row;
-            align-items: center;
-            justify-content: space-around;
-            .single-item-image{
-                width: 80%;
-                height: 30%;
-                min-height: 500px;
-                overflow: hidden;
-                background-size: cover;
-                background-position: center;
-                transition: ease-in 0.5s;
+            justify-content:space-between ;
+            padding: 0 10px;
+            @media screen and (max-width:800px){
+                display: flex;
+                flex-direction: column;
+            }
+            .image-container{
+                width: 62%;
                 @media screen and (max-width:800px){
-                    min-height:200px ;
+                    display: flex;
+                    width: 70%;
                 }
-                &:hover{
-                    transform: scale(1.1);
+                .single-item-image{
+                    width: 100%;
+                    height: 100%;
+                    min-height: 500px;
+                    overflow: hidden;
+                    background-size: cover;
+                    background-position: center;
+                    transition: ease-in 0.5s;
+                    @media screen and (max-width:800px){
+                        min-height:300px ;
+                        padding-left: 2vw;
+                    }
+                    &:hover{
+                        transform: scale(1.01);
+                    }
+                }
+                .nxt-btn-1{
+                    display: none;
+                    @media screen and (max-width:800px){
+                        cursor: pointer;
+                        display: flex;
+                        align-self: center;
+                        position: absolute;
+                        right: 15vw;
+                    }
                 }
             }
-            .nxt-btn{
+           
+            .single-item-content{
+                width: 60vw;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            
+                    .single-item-description{
+                        width: auto;
+                        height: 30%;
+                        font-size: 20px;
+                        padding: 20px 20px;
+                        @media screen and (max-width:800px){
+                            font-size: 20px;
+                            padding: 4px 4px ;
+                        }
+                    }
+                    .single-item-price{
+                        letter-spacing: 1.5px;
+                        text-transform: uppercase;
+                    }
+            
+                    .single-button-container{
+                        width:100%;
+                        height: 100%;
+                        display: flex;
+                        justify-content: space-around;
+                        align-items: flex-end;
+                            &:hover{
+                                opacity: .8;
+                            }
+                        @media screen and (max-width:1050px){ 
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    }
+                   
+            }
+            .nxt-btn-2{
                 justify-self: flex-end;
+                align-self: center;
                 font-size:2vw;
                 cursor: pointer;
                 transition: ease-out 0.5s;
@@ -39,51 +106,12 @@
                     transform: scale(1.5)
                 }
                 @media screen and (max-width:800px){
-                    transform: scale(1.5)
+                    display: none;
+                    transform: scale(1.5);
                 }
         }
     }
-    .single-item-content{
-
-        width: 70vw;
-        display: flex;
-        flex-direction: column;
-        align-items:center ;
-    
-            .single-item-description{
-                width: auto;
-                height: 30%;
-                padding: 20px 148px;
-                font-size: 20px;
-                @media screen and (max-width:800px){
-                    font-size: 20px;
-                    padding: 4px 4px ;
-                }
-            }
-            .single-item-price{
-                letter-spacing: 1.5px;
-                text-transform: uppercase;
-            }
-    
-            .single-button-container{
-                width:100%;
-                height: 100%;
-                display: flex;
-                justify-content: space-around;
-                align-items: flex-end;
-                    &:hover{
-                        opacity: .8;
-                    }
-                @media screen and (max-width:600px){ 
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                }
-            }
-           
-    }
-    }
+  }
 }
 
 

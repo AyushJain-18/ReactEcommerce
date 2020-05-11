@@ -19,7 +19,7 @@ const  CheckoutComponent =({cartItem, addItemToCart, removeItemFromCart,deacreas
                         <span className = 'value'> {quantity} </span>
                         <div className='arrow' onClick ={()=> addItemToCart(cartItem)}>&#10095;</div>
                 </div>
-                <span className='price'>{price}</span>
+                <span className='price'>{price*quantity}</span>
                 <div className='remove-button' onClick ={()=>removeItemFromCart(cartItem)}>
                     &#10005;</div>
             </div>  

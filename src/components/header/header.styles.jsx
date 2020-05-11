@@ -7,7 +7,6 @@ export const HeaderContainer =styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1vw;
     @media screen and (max-width: 800px) {
         background-color:  rgb(250, 246, 246);
         height: 12vw;
@@ -65,7 +64,6 @@ export const MenuIcon = styled.div `
         
 `;
 export const MenuContent = styled.div `
-        margin-top: 4vw;
         height: 20vw;
         background-color:  rgb(250, 246, 246);
         width: 90vw;
