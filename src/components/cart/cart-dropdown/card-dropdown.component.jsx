@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{memo} from 'react';
 import './cart-dropdown.styles.scss'
 
 import CustumButton from '../../CustumComponents/CustumButon/custumButton.component';
@@ -9,7 +9,6 @@ import {selectCartItem} from '../../../reducer/cart/cart.selector';
 import {selectCurrentUser} from '../../../reducer/user/user.selector';
 import {withRouter} from 'react-router-dom'
 import {HideCart} from '../../../reducer/cart/cart.action'
-
 
 
 const CartDropDown =(props)=>{
@@ -46,4 +45,4 @@ const mapStateToProps =(state)=>{
 const mapDispatchToProps =(dispatch)=>({
     hideCartAction: ()=>dispatch(HideCart())
 })
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(CartDropDown));
+export default memo(withRouter(connect(mapStateToProps,mapDispatchToProps)(CartDropDown)));
