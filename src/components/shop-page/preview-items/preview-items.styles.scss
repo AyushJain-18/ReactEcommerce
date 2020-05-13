@@ -28,7 +28,7 @@
     display: none;
     @media screen and (max-width:800px) {
         min-width: unset;
-        display: block;
+        display: none;
         padding:0 10px ;
     }
 }
@@ -39,26 +39,32 @@
     .custom-button{
         opacity: 0.65;
         display: flex;
+        @media screen and (max-width: 800px) {
+            display: none; 
+        }
     }
-    
-    
 }
 .collection-footer{
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     font-size: 18px;
-    @media screen and (max-width: 800px){
-        flex-direction: column;
-        font-size: 14px;
-        align-items: center;
-
+    @media screen and (max-width: 800px) {
+        font-size: 12px;
     }
-
-
-  .price {
-    margin-bottom: 15px;
-  }
- }
+    .cart-add-icon {
+        height: 40px;
+        display:none;
+        cursor: pointer;
+        justify-self: flex-end;;
+        @media screen and (max-width:800px) {
+            display:block;
+        }
+        .shopping-add-icon {
+          width: 14px;
+          height: 14px;
+          }
+      }
+    }
 }

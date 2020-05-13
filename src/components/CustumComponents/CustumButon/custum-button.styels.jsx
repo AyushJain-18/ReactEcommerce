@@ -21,14 +21,20 @@ const CustumButtonstyles = css`
     cursor: pointer;
     display: flex;
     justify-content: center;
-     @media screen and (max-width: 600px){
-        min-width: 34vw;
-    };
     &:hover {
         background-color: rgb(252, 235, 235);
         color: black;
         border: 1px solid black;
       };
+      @media screen and (max-width: 800px){
+        min-width: 34vw;
+        &:hover{
+            background-color: black;
+            color: white;
+            border: 1px solid black;
+        }
+
+    };
      
 `;
 
@@ -51,6 +57,13 @@ const googleButtonStyle = css`
         background-color: black;
         color: white;
         border: none;
+    };
+    @media screen and (max-width: 800px){
+        &:hover{
+            background-color: white;
+            color: black;
+            border: 1px solid black
+        }
     }
 `;
 

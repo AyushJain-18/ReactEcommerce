@@ -6,6 +6,7 @@ import {withRouter, Link} from 'react-router-dom'
 
 import {connect} from 'react-redux';
 import {AddItemToCart} from '../../../reducer/cart/cart.action';
+import {ReactComponent as ShoppingBagIcon} from '../../../assets/shopping-bag.svg'
 
 const PreviewItems =({item ,history,title, AddItemToCartAction})=>{
     const {name,price, imageUrl} = item
@@ -23,8 +24,12 @@ const PreviewItems =({item ,history,title, AddItemToCartAction})=>{
             }}
         />
         <div className="collection-footer">
-            <span>{name}</span>
-            <span className="price">{price}$</span>
+            <div>{name}</div>
+            <div>{price}$</div>
+            <div className="cart-add-icon" >
+                <ShoppingBagIcon className ="shopping-add-icon" onClick ={()=>AddItemToCartAction(item)}>
+                </ShoppingBagIcon>
+        </div>
         </div>
         <CustumButton className ='custom-button' inverted onClick ={()=>AddItemToCartAction(item)}> Add to Cart</CustumButton>
         {/* <button onClick ={()=>history.push('/AddToCart')}>Add to cart</button> */}
