@@ -16,6 +16,7 @@ import 'firebase/firestore'
 
   firebase.initializeApp(config); // we made request to Authorization endpoint 
   // with mine configuration object
+  firebase.firestore().settings({experimentalForceLongPolling: true})
 
   export const auth = firebase.auth(); // Authorization requst
   export const firestore = firebase.firestore();
