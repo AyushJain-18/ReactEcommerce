@@ -8,7 +8,7 @@ import {connect} from 'react-redux'
 import {setInitialState, checkUserSession} from './reducer/user/user.action';
 
 
-import RouteComponent from './routes'
+import RouteComponent from './routesLazy'
 import { EmptyCart } from './reducer/cart/cart.action';
 
 const App =({checkUserSession})=> {
