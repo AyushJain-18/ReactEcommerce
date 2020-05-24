@@ -1,6 +1,9 @@
 // it will listen for every action that we will pas through it
 import { takeLatest, call, put } from 'redux-saga/effects'
 import SHOP_ACTION from './shop.actionTypes'
+//import axios from 'axios'
+// const shopCollection = yield axios.get('https://ecom-server-ayush.herokuapp.com/db');
+     
 
 import {mapCollectionArray} from '../../firebase/firestore-setup';
 import {firestore} from '../../firebase/firebase-setup'
