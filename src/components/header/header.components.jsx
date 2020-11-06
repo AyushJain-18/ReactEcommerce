@@ -43,9 +43,6 @@ return(
                 <LogoContainer  to="/"><Logo/></LogoContainer>
             <OptionsContainer>
                     <OptionLink  to= "/shop">SHOP</OptionLink>
-                <OptionLink>
-                    <Link  to= "">CONTACT</Link>
-                </OptionLink>
                     {currentUser? 
                     <OptionDiv>
                     <div onClick ={actionSignOutStart}> SIGN OUT</div>
@@ -55,7 +52,10 @@ return(
                     </OptionLink> 
                 }
             <CartIcon/>
-            <MenuIcon className="fa fa-bars" onClick = {changeToggledState}/>
+             { displayMenuClass === 'toggeled'?
+                 <MenuIcon className="fa fa-times" onClick = {changeToggledState}/>:
+                 <MenuIcon className="fa fa-bars" onClick = {changeToggledState}/>
+             }
             </OptionsContainer> 
             {hidden? null: <CartDropDown/>}
   </HeaderContainer>
@@ -63,7 +63,6 @@ return(
   
     <MenuContent>
             <Link  to= "/shop">SHOP</Link>
-            <Link  to= "">CONTACT</Link>
             {currentUser? 
                 <div onClick ={actionSignOutStart}> SIGN OUT</div>: 
                 <Link  to= "/signin"> SIGN IN </Link>
