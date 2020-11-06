@@ -61,7 +61,7 @@ export const MenuIcon = styled.div `
         
 `;
 export const MenuContent = styled.div `
-        height           : 120px;
+        height           : 70px;
         background-color :  rgb(250, 246, 246);
         width            : 90vw;
         display          : flex;
