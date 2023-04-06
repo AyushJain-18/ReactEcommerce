@@ -15,7 +15,7 @@ const CartDropDown =(props)=>{
   return(
     <div className="cart-dropdown" >
       {/* html UTF-8 Dingbats */}
-      <div className="html-dingbats" onClick={()=>props.hideCartAction()}>&#10008;</div>
+      <div className="html-dingbats" aria-hidden="true"  onClick={()=>props.hideCartAction()}>&#10008;</div>
       <div className="cart-items">
         {props.cartItems.length?
           props.cartItems.map(item => <CartItemComponent key={item.id} item={item}/>):

@@ -9,7 +9,7 @@ import {selectTotalCartItemQuantity} from "../../../reducer/cart/cart.selector"
 
 const CartIcon =(props) =>{
   return(
-    <div className="cart-icon" onClick={props.toggleCartDisplayStatus}>
+    <div className="cart-icon" aria-hidden="true"  onClick={props.toggleCartDisplayStatus}>
       <ShoppingIcon className ="shopping-icon"/>
       <span className="item-count">{props.itemCount}</span>
     </div>

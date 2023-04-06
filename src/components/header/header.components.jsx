@@ -45,7 +45,7 @@ const HeaderComponent =({currentUser,hidden, actionSignOutStart})=>{
           <OptionLink  to= "/shop">SHOP</OptionLink>
           {currentUser? 
             <OptionDiv>
-              <div onClick ={actionSignOutStart}> SIGN OUT</div>
+              <div aria-hidden="true" onClick ={actionSignOutStart}> SIGN OUT</div>
             </OptionDiv>: 
             <OptionLink>
               <Link  to= "/signin"> SIGN IN </Link>
@@ -64,7 +64,7 @@ const HeaderComponent =({currentUser,hidden, actionSignOutStart})=>{
         <MenuContent>
           <Link  to= "/shop">SHOP</Link>
           {currentUser? 
-            <div onClick ={actionSignOutStart}> SIGN OUT</div>: 
+            <div aria-hidden="true"  onClick ={actionSignOutStart}> SIGN OUT</div>: 
             <Link  to= "/signin"> SIGN IN </Link>
           }
         </MenuContent>: null}

@@ -15,12 +15,12 @@ const  CheckoutComponent =({cartItem, addItemToCart, removeItemFromCart,deacreas
       </div>
       <span className='name'>{name}</span>
       <div className='quantity'>
-        <div className='arrow' onClick ={()=> deacreaseCartQuantity(cartItem)}>&#10094;</div>
+        <div className='arrow' aria-hidden="true"  onClick ={()=> deacreaseCartQuantity(cartItem)}>&#10094;</div>
         <span className = 'value'> {quantity} </span>
-        <div className='arrow' onClick ={()=> addItemToCart(cartItem)}>&#10095;</div>
+        <div className='arrow'aria-hidden="true"   onClick ={()=> addItemToCart(cartItem)}>&#10095;</div>
       </div>
       <span className='price'>{price*quantity}</span>
-      <div className='remove-button' onClick ={()=>removeItemFromCart(cartItem)}>
+      <div className='remove-button' aria-hidden="true"  onClick ={()=>removeItemFromCart(cartItem)}>
                     &#10005;</div>
     </div>  
   )

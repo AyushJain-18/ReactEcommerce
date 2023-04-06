@@ -9,7 +9,7 @@ import {createStructuredSelector} from "reselect"
 
 import PayNowComponent from "../../components/stripe/stripe-pay-now.component"
 class Checkout extends React.Component{
-  componentWillMount(){
+  UNSAFE_componentWillMount(){
     this.props.hideCartAction();
   }
   render(){
