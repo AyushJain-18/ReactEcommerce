@@ -10,13 +10,12 @@ class  PayNowComponent extends React.Component{
             showDefaultCreditCard: true
         }
     }
-    priceInScent = this.props.price*100;
-    publishableKey ='pk_test_4b9bCmmYb4mUbXuV6ygdQE4u00Hzn49rYV';
     onToken =token=>{
         alert('Payement Successfull');
     }
     render(){
- 
+        let     priceInScent = this.props.price*100;
+        let publishableKey ='pk_test_4b9bCmmYb4mUbXuV6ygdQE4u00Hzn49rYV';
     return(
         <div>
             <div className = "warning-text">
@@ -33,9 +32,9 @@ class  PayNowComponent extends React.Component{
                 shippingAddress
                 image = '/favicon.ico'
                 description= {`Your total price is ${this.props.price}`}
-                amount ={this.priceInScent}
+                amount ={priceInScent}
                 token ={this.onToken}
-                stripeKey= {this.publishableKey}
+                stripeKey= {publishableKey}
                 opened={this.onOpened}
                 closed={this.onClosed}
                 />

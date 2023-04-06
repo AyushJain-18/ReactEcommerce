@@ -1,9 +1,9 @@
-import React from 'react'
-import './homepage.styles.scss';
+import React from "react"
+import "./homepage.styles.scss";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import DirectoryMenu from '../../components/home/directory-menu/directory-menu';
+import DirectoryMenu from "../../components/home/directory-menu/directory-menu";
 // creating styled component with 
 const HomePageContainer = styled.div`
 display: flex;
@@ -16,19 +16,19 @@ padding: 1vw 4vw;
   }
 `;
 class Homepage extends React.Component {
-    render() {
-        return (
-            <div>
-                {/* <div className="homepage"> // when using noraml scss file
+  render() {
+    return (
+      <div>
+        {/* <div className="homepage"> // when using noraml scss file
                         <DirectoryMenu/>
             </div> */}
-                <HomePageContainer>
-                    <DirectoryMenu/>
-                </HomePageContainer>
+        <HomePageContainer>
+          <DirectoryMenu/>
+        </HomePageContainer>
 
-        </div>
-        )
-    }
+      </div>
+    )
+  }
 }
 
 export default Homepage;

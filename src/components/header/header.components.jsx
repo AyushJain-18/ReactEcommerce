@@ -1,75 +1,75 @@
-import React ,{useState}from 'react';
-import {Link} from 'react-router-dom'
+import React ,{useState}from "react";
+import {Link} from "react-router-dom"
 
-import './header.styles.scss'
+import "./header.styles.scss"
 
 //that how we have to import our svg images
-import {ReactComponent as Logo} from '../../assets/4.4 crown.svg.svg';
+import {ReactComponent as Logo} from "../../assets/4.4 crown.svg.svg";
 
-import {signOut} from '../../firebase/firebase-auth-method'
+// import {signOut} from "../../firebase/firebase-auth-method"
 
 // using redux in react
-import {connect} from 'react-redux'
-import CartIcon from '../cart/cart-icon/cart-icon.component'
-import CartDropDown from '../cart/cart-dropdown/card-dropdown.component';
+import {connect} from "react-redux"
+import CartIcon from "../cart/cart-icon/cart-icon.component"
+import CartDropDown from "../cart/cart-dropdown/card-dropdown.component";
 
-import {selectCartHiddenStatus} from '../../reducer/cart/cart.selector';
-import {selectCurrentUser} from '../../reducer/user/user.selector'
-import {createStructuredSelector} from 'reselect'
+import {selectCartHiddenStatus} from "../../reducer/cart/cart.selector";
+import {selectCurrentUser} from "../../reducer/user/user.selector"
+import {createStructuredSelector} from "reselect"
 
 import {HeaderContainer,
-        LogoContainer,
-        OptionDiv,
-        OptionLink,
-        OptionsContainer,
-        MenuIcon,
-        MenuContent
-    } from '../header/header.styles'
+  LogoContainer,
+  OptionDiv,
+  OptionLink,
+  OptionsContainer,
+  MenuIcon,
+  MenuContent
+} from "../header/header.styles"
 
-import {userSignOutStart} from '../../reducer/user/user.action'
+import {userSignOutStart} from "../../reducer/user/user.action"
 const HeaderComponent =({currentUser,hidden, actionSignOutStart})=>{
-    const [displayMenuClass, setToggleClass]= useState('');
+  const [displayMenuClass, setToggleClass]= useState("");
 
-    const changeToggledState = ()=>{
-        if(displayMenuClass){
-            setToggleClass('');
-            return;
-        }
-        setToggleClass('toggeled')
+  const changeToggledState = ()=>{
+    if(displayMenuClass){
+      setToggleClass("");
+      return;
     }
-return(
+    setToggleClass("toggeled")
+  }
+  return(
     <div>
-        <HeaderContainer>
-                <LogoContainer  to="/"><Logo/></LogoContainer>
-            <OptionsContainer>
-                    <OptionLink  to= "/shop">SHOP</OptionLink>
-                    {currentUser? 
-                    <OptionDiv>
-                    <div onClick ={actionSignOutStart}> SIGN OUT</div>
-                    </OptionDiv>: 
-                     <OptionLink>
-                    <Link  to= "/signin"> SIGN IN </Link>
-                    </OptionLink> 
-                }
-            <CartIcon/>
-             { displayMenuClass === 'toggeled'?
-                 <MenuIcon className="fa fa-times" onClick = {changeToggledState}/>:
-                 <MenuIcon className="fa fa-bars" onClick = {changeToggledState}/>
-             }
-            </OptionsContainer> 
-            {hidden? null: <CartDropDown/>}
-  </HeaderContainer>
-  {displayMenuClass? 
+      <HeaderContainer>
+        <LogoContainer  to="/"><Logo/></LogoContainer>
+        <OptionsContainer>
+          <OptionLink  to= "/shop">SHOP</OptionLink>
+          {currentUser? 
+            <OptionDiv>
+              <div onClick ={actionSignOutStart}> SIGN OUT</div>
+            </OptionDiv>: 
+            <OptionLink>
+              <Link  to= "/signin"> SIGN IN </Link>
+            </OptionLink> 
+          }
+          <CartIcon/>
+          { displayMenuClass === "toggeled"?
+            <MenuIcon className="fa fa-times" onClick = {changeToggledState}/>:
+            <MenuIcon className="fa fa-bars" onClick = {changeToggledState}/>
+          }
+        </OptionsContainer> 
+        {hidden? null: <CartDropDown/>}
+      </HeaderContainer>
+      {displayMenuClass? 
   
-    <MenuContent>
-            <Link  to= "/shop">SHOP</Link>
-            {currentUser? 
-                <div onClick ={actionSignOutStart}> SIGN OUT</div>: 
-                <Link  to= "/signin"> SIGN IN </Link>
-            }
-  </MenuContent>: null}
-  </div>
-)
+        <MenuContent>
+          <Link  to= "/shop">SHOP</Link>
+          {currentUser? 
+            <div onClick ={actionSignOutStart}> SIGN OUT</div>: 
+            <Link  to= "/signin"> SIGN IN </Link>
+          }
+        </MenuContent>: null}
+    </div>
+  )
 }
 
 // mapStateToProps is a function which will take state as paramterand 
@@ -77,8 +77,8 @@ return(
 // state will be store. 
 //retutn 
 const mapStateToProps = createStructuredSelector({
-    hidden: selectCartHiddenStatus,
-    currentUser: selectCurrentUser
+  hidden: selectCartHiddenStatus,
+  currentUser: selectCurrentUser
 })
 // const mapStateToProps =(state)=>(
 //             { currentUser: state.user.currentUser,
@@ -86,9 +86,9 @@ const mapStateToProps = createStructuredSelector({
 //             }
 //     )
 const mapDispatchToProps = (dispatch)=>{
-    return{
-        actionSignOutStart: ()=> dispatch(userSignOutStart())
-    }
+  return{
+    actionSignOutStart: ()=> dispatch(userSignOutStart())
+  }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderComponent);
 

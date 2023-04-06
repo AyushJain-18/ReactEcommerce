@@ -1,4 +1,4 @@
-import styled ,{css} from 'styled-components';
+import styled ,{css} from "styled-components";
 
 // css in js styled-component support same syntax of Scss which will make our hovering easy.
 
@@ -49,7 +49,7 @@ const googleButtonStyle = css`
 `;
 
 
- const invertButtonStyles = css`
+const invertButtonStyles = css`
     background-color: white;
     color: black;
     border: 1px solid black;
@@ -67,14 +67,14 @@ const googleButtonStyle = css`
     }
 `;
 
-    const getButtonStyle =(props)=>{
-        if(props.isGoogleSignIN){
-            return googleButtonStyle;
-        }
-        if(props.inverted){
-            return invertButtonStyles;
-        }
-    }
+const getButtonStyle =(props)=>{
+  if(props.isGoogleSignIN){
+    return googleButtonStyle;
+  }
+  if(props.inverted){
+    return invertButtonStyles;
+  }
+}
 const Custumbutton =styled.button`
     ${CustumButtonstyles};
     ${getButtonStyle}

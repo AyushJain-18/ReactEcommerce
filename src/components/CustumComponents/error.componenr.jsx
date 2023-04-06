@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const ErrorComponent = ()=>{
-    throw ErrorComponent;
+  throw ErrorComponent;
 }
 
 export default ErrorComponent;

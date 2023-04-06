@@ -1,12 +1,12 @@
-import {createStructuredSelector} from 'reselect'
-import {connect} from 'react-redux'
-import { compose } from 'redux'
-import {selectFectingState, selectIsCollection} from '../../../reducer/shop/shop.selector'
-import WithSpinner from '../../with-spinner/with-spinner.component'
-import CollectionOverview from './collection-overview.component'
+import {createStructuredSelector} from "reselect"
+import {connect} from "react-redux"
+import { compose } from "redux"
+import {selectIsCollection} from "../../../reducer/shop/shop.selector"
+import WithSpinner from "../../with-spinner/with-spinner.component"
+import CollectionOverview from "./collection-overview.component"
 
 const mapStateToprops = createStructuredSelector({
-    isLoading: selectIsCollection
+  isLoading: selectIsCollection
 })
 /**
  * mapStateToprops---
@@ -17,8 +17,8 @@ const mapStateToprops = createStructuredSelector({
  */
 
 const CollectionOverviewContainer = compose(
-    connect(mapStateToprops),
-    WithSpinner
+  connect(mapStateToprops),
+  WithSpinner
 )(CollectionOverview);
 
 export default CollectionOverviewContainer;

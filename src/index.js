@@ -1,28 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom'
+import React from "react";
+import ReactDOM from "react-dom"
 
-import './index.css';
-import App from './App';
+import "./index.css";
+import App from "./App";
 
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from "./serviceWorker";
 
-import {BrowserRouter} from 'react-router-dom' //  import for routing module.
-import {Provider} from 'react-redux'
-import store,{persistor} from './reducer/store'
+import {BrowserRouter} from "react-router-dom" //  import for routing module.
+import {Provider} from "react-redux"
+import store,{persistor} from "./reducer/store"
 
 
 //persist component
-import {PersistGate} from 'redux-persist/integration/react'
+import {PersistGate} from "redux-persist/integration/react"
 
 ReactDOM.render(
   <Provider store ={store}>
     <BrowserRouter>
       <PersistGate persistor ={persistor}>
-          <App />
+        <App />
       </PersistGate>
     </BrowserRouter>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
